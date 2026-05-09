@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Дуртай бараанууд — HANMUN</title>
+  <meta name="description" content="Таны хадгалсан дуртай барааны жагсаалт."/>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="topbar__util">
+      <div class="topbar__utilInner">
+        <nav class="topbar__utilNav">
+          <a href="/profile.html?mode=login">Нэвтрэх</a><span>|</span>
+          <a href="/profile.html?mode=signup">Бүртгүүлэх</a><span>|</span>
+          <a href="/my-orders.html">Захиалга</a>
+        </nav>
+      </div>
+    </div>
+    <nav class="topbar__inner" aria-label="Top navigation">
+      <div class="topbar__left">
+        <a class="icon-btn" href="/" aria-label="Нүүр">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
+        </a>
+        <a class="brand" href="/"><span class="brand__logo">HANMUN</span></a>
+      </div>
+      <div class="topbar__center">
+        <form class="search" role="search" data-search-nav>
+          <div class="search__field">
+            <input name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input/>
+            <button class="search__btn" type="submit" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="topbar__right">
+        <a class="topbar__action" href="/cart.html">
+          <div class="topbar__actionIconWrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/></svg>
+            <span class="cartBadge" data-cart-badge hidden>0</span>
+          </div>
+          <span class="topbar__actionLabel">Сагс</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wishPage" id="main">
+    <div class="wishPage__head">
+      <h1 class="wishPage__title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--primary)" stroke="var(--primary)" stroke-width="0"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Дуртай бараанууд
+      </h1>
+      <div class="wishPage__actions">
+        <span class="wishPage__count" data-wish-count></span>
+        <button class="wishPage__clearBtn" type="button" data-clear-all>Бүгдийг устгах</button>
+      </div>
+    </div>
+
+    <div class="grid" data-wish-grid>
+      <div class="wishSkel card"></div>
+      <div class="wishSkel card"></div>
+      <div class="wishSkel card"></div>
+    </div>
+
+    <div class="wishEmpty" data-wish-empty hidden>
+      <div class="wishEmpty__icon">🤍</div>
+      <p class="wishEmpty__title">Дуртай бараа байхгүй</p>
+      <p class="wishEmpty__hint">Бараа дэлгэрэнгүй хуудсан дахь ♡ дарж хадгалаарай.</p>
+      <a class="wishEmpty__btn" href="/">Бараа үзэх</a>
+    </div>
+  </main>
+
+  <nav class="bottomNav" aria-label="Bottom navigation">
+    <a class="bottomNav__item" href="/">Нүүр</a>
+    <a class="bottomNav__item" href="/cart.html">Сагс</a>
+    <a class="bottomNav__item" href="/my-orders.html">Захиалга</a>
+    <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+  </nav>
+
+  <script type="module" src="/js/wishlist.js"></script>
+</body>
+</html>

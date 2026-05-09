@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Миний захиалгууд — HANMUN</title>
+  <meta name="description" content="Таны бүх захиалгуудын жагсаалт болон хүргэлтийн явц."/>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="topbar__util">
+      <div class="topbar__utilInner">
+        <nav class="topbar__utilNav">
+          <a href="/profile.html?mode=login">Нэвтрэх</a><span>|</span>
+          <a href="/profile.html?mode=signup">Бүртгүүлэх</a><span>|</span>
+          <a href="/my-orders" style="color:var(--c-blue);font-weight:800">Захиалга</a>
+        </nav>
+      </div>
+    </div>
+    <nav class="topbar__inner">
+      <div class="topbar__left">
+        <a class="icon-btn" href="/" aria-label="Нүүр">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
+        </a>
+        <a class="brand" href="/"><span class="brand__logo">HANMUN</span></a>
+      </div>
+      <div class="topbar__center">
+        <form class="search" role="search" data-search-nav>
+          <div class="search__field">
+            <input name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input/>
+            <button class="search__btn" type="submit" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="topbar__right">
+        <a class="topbar__action" href="/cart.html">
+          <div class="topbar__actionIconWrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/></svg>
+            <span class="cartBadge" data-cart-badge hidden>0</span>
+          </div>
+          <span class="topbar__actionLabel">Сагс</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="moPage" id="main">
+
+    <!-- ── Quick track (always visible at top) ── -->
+    <div class="moTrack">
+      <div class="moTrack__inner">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="moTrack__label">Захиалга дугаараар хянах:</span>
+        <div class="moTrack__form">
+          <input class="moTrack__input" type="text" placeholder="UB-XXXXXX-XXXXX" data-track-input maxlength="30"/>
+          <button class="moTrack__btn" type="button" data-track-btn>Хянах</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Order history ── -->
+    <div class="moContent">
+      <div class="moHead">
+        <h1 class="moHead__title">Миний захиалгууд</h1>
+        <span class="moHead__count" data-order-count></span>
+      </div>
+
+      <!-- Status tabs -->
+      <div class="moTabs" role="tablist" aria-label="Захиалгын байдал">
+        <button class="moTab is-active" type="button" data-tab="all">
+          Бүгд <span class="moTab__n" data-tab-count="all"></span>
+        </button>
+        <button class="moTab" type="button" data-tab="processing">
+          <span class="moTab__dot moTab__dot--blue"></span>Боловсруулж байна
+        </button>
+        <button class="moTab" type="button" data-tab="out_for_delivery">
+          <span class="moTab__dot moTab__dot--orange"></span>Хүргэлтэнд
+        </button>
+        <button class="moTab" type="button" data-tab="delivered">
+          <span class="moTab__dot moTab__dot--green"></span>Хүргэгдсэн
+        </button>
+      </div>
+
+      <!-- Orders list -->
+      <div data-orders-list></div>
+
+      <!-- Loading state -->
+      <div data-loading>
+        <div class="moSkel"></div>
+        <div class="moSkel" style="animation-delay:.15s"></div>
+        <div class="moSkel" style="animation-delay:.3s"></div>
+      </div>
+
+      <!-- Empty state: has never ordered -->
+      <div class="moEmpty" data-empty hidden>
+        <div class="moEmpty__art">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <h2 class="moEmpty__title">Захиалга байхгүй байна</h2>
+        <p class="moEmpty__hint">Та одоогоор захиалга хийгээгүй байна.<br>Дэлгүүрлэж, анхны захиалгаа өгөөрэй!</p>
+        <div class="moEmpty__actions">
+          <a class="moEmpty__shopBtn" href="/">Дэлгүүрлэж эхлэх →</a>
+          <p class="moEmpty__orText">Эсвэл захиалгын дугаараа дээр оруулаарай</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Inline order detail panel (track result) ── -->
+    <div class="moDetail" data-order-detail hidden>
+      <div class="moDetail__head">
+        <h2 class="moDetail__title" data-detail-num></h2>
+        <button class="moDetail__close" type="button" data-detail-close aria-label="Хаах">✕</button>
+      </div>
+      <div data-detail-body></div>
+    </div>
+
+  </main>
+
+  <nav class="bottomNav">
+    <a class="bottomNav__item" href="/">Нүүр</a>
+    <a class="bottomNav__item" href="/wishlist">♡</a>
+    <a class="bottomNav__item" href="/cart.html">Сагс</a>
+    <a class="bottomNav__item is-active" href="/my-orders">Захиалга</a>
+    <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+  </nav>
+
+  <script type="module" src="/js/my-orders.js"></script>
+</body>
+</html>

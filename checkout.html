@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Захиалга — HANMUN</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+
+    <header class="topbar" role="banner">
+      <div class="topbar__util">
+        <div class="topbar__utilInner">
+          <nav class="topbar__utilNav">
+            <a href="/profile.html?mode=login">Нэвтрэх</a>
+            <span>|</span>
+            <a href="/profile.html?mode=signup">Бүртгүүлэх</a>
+            <span>|</span>
+            <a href="/my-orders">Захиалга</a>
+          </nav>
+        </div>
+      </div>
+      <nav class="topbar__inner" aria-label="Top navigation">
+        <div class="topbar__left">
+          <a class="icon-btn" href="/cart.html" aria-label="Сагс руу буцах">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+          </a>
+          <a class="brand" href="/" aria-label="HANMUN home"><span class="brand__logo">HANMUN</span></a>
+        </div>
+
+        <div class="topbar__center">
+          <form class="search" role="search" aria-label="Site search" data-search-nav>
+            <label class="sr-only" for="searchInputCo">Бараа хайх</label>
+            <div class="search__field">
+              <input id="searchInputCo" name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input />
+              <button class="search__voiceBtn" type="button" data-voice-search aria-label="Дуу хоолойгоор хайх">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <button class="search__btn" type="submit" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="topbar__right">
+          <a class="topbar__action" href="/profile.html?mode=login" aria-label="Профайл">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 21a8 8 0 1 0-16 0" stroke-linecap="round"/><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg>
+            <span class="topbar__actionLabel">Профайл</span>
+          </a>
+          <a class="topbar__action" href="/cart.html" aria-label="Сагс">
+            <div class="topbar__actionIconWrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/></svg>
+              <span class="cartBadge" data-cart-badge hidden>0</span>
+            </div>
+            <span class="topbar__actionLabel">Сагс</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Progress steps -->
+    <div class="coProgress">
+      <div class="coProgress__inner">
+        <div class="coProgress__step is-done">
+          <div class="coProgress__dot">✓</div>
+          <span>Сагс</span>
+        </div>
+        <div class="coProgress__line"></div>
+        <div class="coProgress__step is-current">
+          <div class="coProgress__dot">2</div>
+          <span>Захиалга</span>
+        </div>
+        <div class="coProgress__line"></div>
+        <div class="coProgress__step">
+          <div class="coProgress__dot">3</div>
+          <span>Төлбөр</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden fields for profile data (always submitted) -->
+    <form id="checkoutForm" data-checkout-form>
+      <input type="hidden" name="customerName" id="hidName" />
+      <input type="hidden" name="phone"        id="hidPhone" />
+      <input type="hidden" name="addressLine"  id="hidAddress" />
+      <input type="hidden" name="district"     id="hidDistrict" />
+    </form>
+
+    <main class="coPage" id="main">
+
+      <!-- ── LEFT ── -->
+      <div class="coPage__left">
+
+        <!-- 1. Хүргэлтийн хаяг -->
+        <section class="coSection" aria-label="Хүргэлтийн хаяг">
+          <div class="coSection__head">
+            <h2 class="coSection__title">
+              <span class="coSection__num">1</span>
+              Хүргэлтийн хаяг
+            </h2>
+            <button class="coSection__editBtn" type="button" data-edit-addr hidden>Засах</button>
+          </div>
+
+          <!-- Filled from profile (read-only) -->
+          <div class="coAddrCard" data-addr-display hidden>
+            <div class="coAddrCard__row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21a8 8 0 1 0-16 0" stroke-linecap="round"/><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg>
+              <span data-addr-name class="coAddrCard__name"></span>
+            </div>
+            <div class="coAddrCard__row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              <span data-addr-phone></span>
+            </div>
+            <div class="coAddrCard__row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <span data-addr-addr></span>
+            </div>
+          </div>
+
+          <!-- Form (shown when no profile OR editing) -->
+          <div class="coAddrForm" data-addr-form>
+            <div class="coField__row">
+              <div class="coField">
+                <label class="coField__label" for="coName">Нэр</label>
+                <input class="coField__input" id="coName" form="checkoutForm" name="_ignore" autocomplete="name" placeholder="Бүтэн нэр" />
+              </div>
+              <div class="coField">
+                <label class="coField__label" for="coPhone">Утас</label>
+                <input class="coField__input" id="coPhone" form="checkoutForm" name="_ignore" inputmode="numeric" autocomplete="tel" placeholder="8 оронтой" />
+              </div>
+            </div>
+            <div class="coField">
+              <label class="coField__label" for="coDistrict">Дүүрэг</label>
+              <select class="coField__input" id="coDistrict" form="checkoutForm" name="_ignore">
+                <option value="">Сонгох…</option>
+                <option>Sukhbaatar</option>
+                <option>Chingeltei</option>
+                <option>Bayangol</option>
+                <option>Khan-Uul</option>
+                <option>Bayanzurkh</option>
+                <option>Songinokhairkhan</option>
+              </select>
+            </div>
+            <div class="coField">
+              <label class="coField__label" for="coAddress">Хаяг</label>
+              <input class="coField__input" id="coAddress" form="checkoutForm" name="_ignore" autocomplete="street-address" placeholder="Гудамж, байр, тоот" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Хүргэлтийн сонголт -->
+        <section class="coSection" aria-label="Хүргэлт">
+          <div class="coSection__head">
+            <h2 class="coSection__title">
+              <span class="coSection__num">2</span>
+              Хүргэлтийн сонголт
+            </h2>
+          </div>
+          <div class="coDelivery">
+            <label class="coDelivery__opt">
+              <input type="radio" name="deliverySpeed" value="fast" form="checkoutForm" checked />
+              <div class="coDelivery__card">
+                <span class="coDelivery__icon">🚀</span>
+                <div class="coDelivery__info">
+                  <div class="coDelivery__name">Хурдан хүргэлт</div>
+                  <div class="coDelivery__eta" data-eta-fast>Маргааш хүргэнэ</div>
+                </div>
+                <div class="coDelivery__fee" data-fee-fast>—</div>
+              </div>
+            </label>
+            <label class="coDelivery__opt">
+              <input type="radio" name="deliverySpeed" value="standard" form="checkoutForm" />
+              <div class="coDelivery__card">
+                <span class="coDelivery__icon">📦</span>
+                <div class="coDelivery__info">
+                  <div class="coDelivery__name">Энгийн хүргэлт</div>
+                  <div class="coDelivery__eta" data-eta-std>2–3 хоногт</div>
+                </div>
+                <div class="coDelivery__fee" data-fee-std>—</div>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- 3. Төлбөрийн хэлбэр -->
+        <section class="coSection" aria-label="Төлбөрийн хэлбэр">
+          <div class="coSection__head">
+            <h2 class="coSection__title">
+              <span class="coSection__num">3</span>
+              Төлбөрийн хэлбэр
+            </h2>
+          </div>
+          <div class="coPayment">
+            <label class="coPayment__opt">
+              <input type="radio" name="paymentMethod" value="card" form="checkoutForm" checked />
+              <div class="coPayment__card">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                <div class="coPayment__label">Картаар</div>
+                <div class="coPayment__desc">Visa · Mastercard</div>
+              </div>
+            </label>
+            <label class="coPayment__opt">
+              <input type="radio" name="paymentMethod" value="qpay" form="checkoutForm" />
+              <div class="coPayment__card">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                <div class="coPayment__label">QPay</div>
+                <div class="coPayment__desc">QR кодоор</div>
+              </div>
+            </label>
+            <label class="coPayment__opt">
+              <input type="radio" name="paymentMethod" value="transfer" form="checkoutForm" />
+              <div class="coPayment__card">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                <div class="coPayment__label">Бэлнээр</div>
+                <div class="coPayment__desc">Хүргэлтэд</div>
+              </div>
+            </label>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ── RIGHT ── -->
+      <div class="coPage__right">
+
+        <!-- Product summary -->
+        <section class="coSection" aria-label="Захиалгын бараа">
+          <div class="coSection__head">
+            <h2 class="coSection__title">Захиалгын бараа</h2>
+            <a class="coSection__editBtn" href="/cart.html">Засах</a>
+          </div>
+          <div data-co-items>
+            <div class="coItemSkeleton"></div>
+            <div class="coItemSkeleton"></div>
+          </div>
+        </section>
+
+        <!-- Order totals -->
+        <div class="coTotals">
+          <div class="coTotals__row">
+            <span>Барааны дүн</span>
+            <span class="coTotals__val" data-co-subtotal>—</span>
+          </div>
+          <div class="coTotals__row coTotals__row--muted">
+            <span>Хүргэлт</span>
+            <span class="coTotals__val" data-co-delivery>—</span>
+          </div>
+          <!-- Coupon code -->
+        <div class="couponRow">
+          <input class="couponRow__input" type="text" placeholder="Купон код оруулах" data-coupon-input maxlength="20" style="text-transform:uppercase"/>
+          <button class="couponRow__btn" type="button" data-coupon-apply>Хэрэглэх</button>
+        </div>
+        <div class="couponRow__msg" data-coupon-msg hidden></div>
+
+        <div class="coTotals__divider"></div>
+          <div class="coTotals__row coTotals__row--total">
+            <span>Нийт дүн</span>
+            <strong class="coTotals__totalVal" data-co-total>—</strong>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="coError" data-co-error hidden></div>
+
+        <!-- Pay button -->
+        <button class="coPayBtn" type="submit" form="checkoutForm" data-co-submit>
+          <span data-co-btn-label>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            Аюулгүй төлөх
+          </span>
+          <svg class="coPayBtn__spinner" data-co-spinner hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <p class="coPayNote">
+          🔒 Таны мэдээлэл SSL шифрлэлтээр хамгаалагдана
+        </p>
+
+      </div>
+    </main>
+
+    <nav class="bottomNav" aria-label="Bottom navigation">
+      <a class="bottomNav__item" href="/">Нүүр</a>
+      <a class="bottomNav__item" href="/cart.html">Сагс</a>
+      <a class="bottomNav__item is-active" href="/my-orders">Захиалга</a>
+      <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+    </nav>
+
+    <!-- ════════════ PAYMENT OVERLAY ════════════ -->
+    <div class="payOverlay" data-payment-overlay hidden>
+
+      <!-- QPay panel -->
+      <div class="payPanel" data-pay-panel="qpay" hidden>
+        <button class="payPanel__close" data-close-pay aria-label="Хаах">✕</button>
+        <div class="payPanel__logoRow">
+          <span class="payQPayLogo">Q<span>Pay</span></span>
+          <span class="payPanel__secure">🔒 Аюулгүй</span>
+        </div>
+        <p class="payPanel__hint">Дараах аппаар QR кодыг уншуулна уу</p>
+
+        <div class="payQRBox">
+          <img class="payQRImg" data-qr-img alt="QPay QR code" />
+          <div class="payQRAmount" data-pay-amount></div>
+        </div>
+
+        <div class="payTimerRow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-pay-timer>15:00</span>
+          <span style="color:rgba(16,16,16,.45)">хоцрохоос өмнө</span>
+        </div>
+
+        <!-- Mongolian bank logos -->
+        <div class="payBanks">
+          <div class="payBank">🏦<span>Хаан</span></div>
+          <div class="payBank">🏦<span>ТД</span></div>
+          <div class="payBank">🏦<span>Голомт</span></div>
+          <div class="payBank">🏦<span>Хас</span></div>
+          <div class="payBank">🏦<span>Капитрон</span></div>
+          <div class="payBank">🏦<span>Богд</span></div>
+        </div>
+
+        <!-- Demo confirm (real QPay-д эндэс байхгүй — хэрэглэгч апп-д баталгаажуулдаг) -->
+        <div class="payDemoNote">
+          ⚡ Demo горим — дор товчоор баталгаажуулна
+        </div>
+        <button class="paySimBtn" data-simulate-pay type="button">
+          Төлбөр баталгаажуулах (Demo)
+        </button>
+      </div>
+
+      <!-- Card panel -->
+      <div class="payPanel" data-pay-panel="card" hidden>
+        <button class="payPanel__close" data-close-pay aria-label="Хаах">✕</button>
+        <h2 class="payPanel__title">Картаар төлөх</h2>
+
+        <!-- Virtual card display -->
+        <div class="payCardVisual" data-card-visual>
+          <div class="payCardVisual__chip"></div>
+          <div class="payCardVisual__number" data-cv-number>•••• •••• •••• ••••</div>
+          <div class="payCardVisual__bot">
+            <div>
+              <div class="payCardVisual__sublabel">Эзэмшигч</div>
+              <div class="payCardVisual__name" data-cv-name>ХЭРЭГЛЭГЧИЙН НЭР</div>
+            </div>
+            <div>
+              <div class="payCardVisual__sublabel">Хугацаа</div>
+              <div class="payCardVisual__exp" data-cv-exp>MM/YY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card form -->
+        <div class="payCardForm">
+          <div class="coField">
+            <label class="coField__label">Картын дугаар</label>
+            <input class="coField__input" id="cardNum" inputmode="numeric" maxlength="19"
+              placeholder="1234 5678 9012 3456" data-card-num autocomplete="cc-number" />
+          </div>
+          <div class="coField__row">
+            <div class="coField">
+              <label class="coField__label">Хүчинтэй хугацаа</label>
+              <input class="coField__input" id="cardExp" inputmode="numeric" maxlength="5"
+                placeholder="MM/YY" data-card-exp autocomplete="cc-exp" />
+            </div>
+            <div class="coField">
+              <label class="coField__label">CVV</label>
+              <input class="coField__input" id="cardCvv" inputmode="numeric" maxlength="3"
+                placeholder="•••" data-card-cvv autocomplete="cc-csc" type="password" />
+            </div>
+          </div>
+          <div class="coField">
+            <label class="coField__label">Эзэмшигчийн нэр</label>
+            <input class="coField__input" id="cardName" maxlength="26"
+              placeholder="BOLD BAATAR" data-card-name autocomplete="cc-name"
+              style="text-transform:uppercase;letter-spacing:.06em" />
+          </div>
+        </div>
+
+        <div class="coError" data-card-error hidden></div>
+        <div class="payTotalLine"><span>Нийт дүн:</span><strong data-pay-amount-card>—</strong></div>
+        <button class="coPayBtn" type="button" data-pay-card-submit>
+          <span data-card-btn-label>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+            Картаар төлөх
+          </span>
+          <svg class="coPayBtn__spinner" data-card-spinner hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Cash panel -->
+      <div class="payPanel" data-pay-panel="transfer" hidden>
+        <button class="payPanel__close" data-close-pay aria-label="Хаах">✕</button>
+        <div class="payCashIcon">💵</div>
+        <h2 class="payPanel__title">Бэлнээр төлөх</h2>
+        <p class="payPanel__hint">Хүргэлтийн үед жолоочид төлнө.</p>
+        <div class="payTotalLine"><span>Нийт дүн:</span><strong data-pay-amount-cash>—</strong></div>
+        <div class="payCashInfo">
+          <div class="payCashInfo__row">📍 Хаяг: <span data-cash-address>—</span></div>
+          <div class="payCashInfo__row">⏰ Хүргэлт: <span data-cash-eta>—</span></div>
+        </div>
+        <button class="coPayBtn" type="button" data-pay-cash-confirm>
+          Захиалга баталгаажуулах
+        </button>
+      </div>
+
+      <!-- Success panel -->
+      <div class="payPanel payPanel--success" data-pay-panel="success" hidden>
+        <div class="paySuccess">
+          <div class="paySuccess__ring">
+            <svg class="paySuccess__check" viewBox="0 0 52 52">
+              <circle class="paySuccess__circle" cx="26" cy="26" r="25" fill="none"/>
+              <path class="paySuccess__path" fill="none" d="M14 27l9 9 16-16"/>
+            </svg>
+          </div>
+          <h2 class="paySuccess__title">Захиалга амжилттай!</h2>
+          <p class="paySuccess__hint">Таны захиалга баталгаажлаа. Удахгүй хүргэнэ.</p>
+          <div class="paySuccess__orderNum" data-success-order-num></div>
+          <p class="paySuccess__redirect">Захиалгын хуудас руу шилжиж байна…</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- ════════════════════════════════════════ -->
+
+    <script type="module" src="/js/checkout.js"></script>
+  </body>
+</html>

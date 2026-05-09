@@ -1,0 +1,86 @@
+function makeId(prefix = "id") {
+  return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+export function getCartId() {
+  const k = "mvp_cart_id";
+  let id = localStorage.getItem(k);
+  if (!id) { id = makeId("cart"); localStorage.setItem(k, id); }
+  return id;
+}
+
+// ── Order history ─────────────────────────────────────────────────────────
+const ORDERS_KEY = "mvp_order_history";
+
+export function setLastOrderNumber(orderNumber) {
+  if (!orderNumber) return;
+  localStorage.setItem("mvp_last_order", String(orderNumber));
+  addOrderToHistory(orderNumber);
+}
+
+export function getLastOrderNumber() {
+  return localStorage.getItem("mvp_last_order") || "";
+}
+
+export function addOrderToHistory(orderNumber) {
+  if (!orderNumber) return;
+  const list = getOrderHistory();
+  if (!list.includes(orderNumber)) {
+    list.unshift(orderNumber);
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(list.slice(0, 50)));
+  }
+}
+
+export function getOrderHistory() {
+  try { return JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]"); }
+  catch { return []; }
+}
+
+// ── Profile ───────────────────────────────────────────────────────────────
+const PROFILE_KEY = "mvp_profile_v1";
+
+export function getProfile() {
+  try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || "null"); }
+  catch { return null; }
+}
+export function setProfile(p) { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); }
+export function clearProfile() { localStorage.removeItem(PROFILE_KEY); }
+
+// ── Wishlist ──────────────────────────────────────────────────────────────
+const WISH_KEY = "mvp_wishlist_v1";
+
+export function getWishlist() {
+  try { return JSON.parse(localStorage.getItem(WISH_KEY) || "[]"); }
+  catch { return []; }
+}
+
+export function toggleWishlist(productId) {
+  const list = getWishlist();
+  const idx  = list.indexOf(productId);
+  if (idx >= 0) list.splice(idx, 1); else list.unshift(productId);
+  localStorage.setItem(WISH_KEY, JSON.stringify(list));
+  return idx < 0; // true = added
+}
+
+export function isInWishlist(productId) {
+  return getWishlist().includes(productId);
+}
+
+export function clearWishlist() {
+  localStorage.removeItem(WISH_KEY);
+}
+
+// ── Recent searches ───────────────────────────────────────────────────────
+const SEARCH_KEY = "mvp_recent_searches";
+
+export function addRecentSearch(q) {
+  if (!q?.trim()) return;
+  const list = getRecentSearches().filter(s => s !== q);
+  list.unshift(q.trim());
+  localStorage.setItem(SEARCH_KEY, JSON.stringify(list.slice(0, 8)));
+}
+
+export function getRecentSearches() {
+  try { return JSON.parse(localStorage.getItem(SEARCH_KEY) || "[]"); }
+  catch { return []; }
+}

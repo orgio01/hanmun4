@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node server/src/index.js)",
+      "Bash(curl -s http://localhost:3000/api/products)",
+      "Bash(node --check js/common.js)",
+      "Bash(node --check js/product.js)",
+      "Bash(node --check js/cart.js)",
+      "Bash(node --check js/checkout.js)",
+      "Bash(node --check js/orders.js)"
+    ]
+  }
+}

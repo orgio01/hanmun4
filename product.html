@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Бараа — HANMUN</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+
+    <header class="topbar" role="banner">
+      <!-- Utility bar -->
+      <div class="topbar__util">
+        <div class="topbar__utilInner">
+          <nav class="topbar__utilNav">
+            <a href="/profile.html?mode=login">Нэвтрэх</a>
+            <span>|</span>
+            <a href="/profile.html?mode=signup">Бүртгүүлэх</a>
+            <span>|</span>
+            <a href="/my-orders">Захиалга</a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main nav -->
+      <nav class="topbar__inner" aria-label="Top navigation">
+        <div class="topbar__left">
+          <a class="icon-btn" href="/" aria-label="Нүүр хуудас руу буцах">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18 9 12l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="brand" href="/" aria-label="HANMUN home">
+            <span class="brand__logo">HANMUN</span>
+          </a>
+        </div>
+
+        <div class="topbar__center">
+          <form class="search" role="search" aria-label="Site search" data-search-nav>
+            <label class="sr-only" for="searchInputPdp">Бараа хайх</label>
+            <div class="search__field">
+              <input id="searchInputPdp" name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input />
+              <button class="search__voiceBtn" type="button" data-voice-search aria-label="Дуу хоолойгоор хайх">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <button class="search__btn" type="submit" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="topbar__right">
+          <a class="topbar__action" href="/profile.html?mode=login" aria-label="Профайл">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 21a8 8 0 1 0-16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span class="topbar__actionLabel">Профайл</span>
+          </a>
+          <a class="topbar__action" href="/cart.html" aria-label="Сагс">
+            <div class="topbar__actionIconWrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="cartBadge" data-cart-badge hidden>0</span>
+            </div>
+            <span class="topbar__actionLabel">Сагс</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pdpPage" id="main">
+
+      <!-- Loading state -->
+      <div class="pdpSkeleton" data-skeleton>
+        <div class="pdpSkeleton__img"></div>
+        <div class="pdpSkeleton__info">
+          <div class="pdpSkeleton__line pdpSkeleton__line--short"></div>
+          <div class="pdpSkeleton__line pdpSkeleton__line--title"></div>
+          <div class="pdpSkeleton__line"></div>
+          <div class="pdpSkeleton__line pdpSkeleton__line--short"></div>
+        </div>
+      </div>
+
+      <!-- Product detail -->
+      <div class="pdp" data-pdp hidden>
+
+        <!-- Left: image -->
+        <div class="pdp__gallery">
+          <div class="pdp__imgWrap">
+            <img class="pdp__img" data-product-image alt="" loading="eager" />
+          </div>
+          <div class="pdp__trustRow">
+            <div class="pdp__trustItem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+              <span>Жинхэнэ</span>
+            </div>
+            <div class="pdp__trustItem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+              <span>Буцаалт</span>
+            </div>
+            <div class="pdp__trustItem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+              <span>Аюулгүй</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: info -->
+        <div class="pdp__info">
+
+          <!-- Breadcrumb -->
+          <nav class="pdp__breadcrumb" aria-label="breadcrumb">
+            <a href="/">Нүүр</a>
+            <span>›</span>
+            <span data-product-category-bc>Бараа</span>
+          </nav>
+
+          <!-- Category badge -->
+          <div class="pdp__catBadge" data-product-category hidden></div>
+
+          <!-- Name -->
+          <h1 class="pdp__name" data-product-name>Уншиж байна…</h1>
+
+          <!-- Price block -->
+          <div class="pdp__priceBlock">
+            <div class="pdp__priceCurrent" data-product-price></div>
+            <div class="pdp__priceRight">
+              <span class="pdp__priceWas" data-product-price-was hidden></span>
+              <span class="pdp__offTag" data-product-off hidden></span>
+            </div>
+          </div>
+
+          <!-- Delivery -->
+          <div class="pdp__delivRow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+            <span class="pdp__delivBadge">Хурдан хүргэлт</span>
+            <span class="pdp__delivEta">Маргааш хүрнэ</span>
+          </div>
+
+          <!-- Stock -->
+          <div class="pdp__stockLine" data-product-stock></div>
+
+          <!-- Divider -->
+          <hr class="pdp__divider" />
+
+          <!-- Description -->
+          <p class="pdp__desc" data-product-description></p>
+
+          <!-- Divider -->
+          <hr class="pdp__divider" />
+
+          <!-- Quantity -->
+          <div class="pdp__qtyRow">
+            <span class="pdp__qtyLabel">Тоо ширхэг</span>
+            <div class="qty">
+              <button class="icon-btn qty__btn" type="button" data-qty-dec aria-label="Бага болгох">−</button>
+              <input class="qty__input" type="number" value="1" min="1" max="99" data-qty-input aria-label="Тоо" />
+              <button class="icon-btn qty__btn" type="button" data-qty-inc aria-label="Их болгох">+</button>
+            </div>
+          </div>
+
+          <!-- CTA buttons -->
+          <div class="pdp__ctaRow">
+            <button class="wishBtn pdp__wishBtn" type="button" data-wish-btn aria-label="Дуртай жагсаалт"></button>
+            <button class="pdp__btnCart" type="button" data-add-to-cart>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/></svg>
+              Сагсанд нэмэх
+            </button>
+            <button class="pdp__btnBuy" type="button" data-buy-now>
+              Шууд авах
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Error state -->
+      <div class="pdpError" data-error hidden>
+        <div class="pdpError__icon">⚠</div>
+        <div class="pdpError__title">Бараа олдсонгүй</div>
+        <div class="pdpError__hint">Бараа устгагдсан эсвэл ID буруу байна.</div>
+        <a class="pdp__btnBuy" href="/" style="display:inline-flex;text-decoration:none;margin-top:8px;">Нүүр рүү буцах</a>
+      </div>
+
+    </main>
+
+    <nav class="bottomNav" aria-label="Bottom navigation">
+      <a class="bottomNav__item" href="/">Нүүр</a>
+      <a class="bottomNav__item" href="/cart.html">Сагс</a>
+      <a class="bottomNav__item" href="/my-orders">Захиалга</a>
+      <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+    </nav>
+
+    <!-- Related products -->
+    <section class="relSection" data-related-section hidden>
+      <div class="pdpPage" style="padding-top:0">
+        <h2 class="relSection__title">Үүнтэй төстэй бараа</h2>
+        <div class="relGrid" data-related-grid></div>
+      </div>
+    </section>
+
+    <!-- Reviews section -->
+    <section class="pdpPage" id="reviews" style="padding-top:0">
+      <div data-reviews-container></div>
+    </section>
+
+    <script type="module" src="/js/product.js"></script>
+  </body>
+</html>

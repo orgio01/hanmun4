@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Сагс — HANMUN</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+
+    <header class="topbar" role="banner">
+      <div class="topbar__util">
+        <div class="topbar__utilInner">
+          <nav class="topbar__utilNav">
+            <a href="/profile.html?mode=login">Нэвтрэх</a>
+            <span>|</span>
+            <a href="/profile.html?mode=signup">Бүртгүүлэх</a>
+            <span>|</span>
+            <a href="/my-orders">Захиалга</a>
+          </nav>
+        </div>
+      </div>
+
+      <nav class="topbar__inner" aria-label="Top navigation">
+        <div class="topbar__left">
+          <a class="icon-btn" href="/" aria-label="Нүүр хуудас">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 18 9 12l6-6"/>
+            </svg>
+          </a>
+          <a class="brand" href="/" aria-label="HANMUN home">
+            <span class="brand__logo">HANMUN</span>
+          </a>
+        </div>
+
+        <div class="topbar__center">
+          <form class="search" role="search" aria-label="Site search" data-search-nav>
+            <label class="sr-only" for="searchInputCart">Бараа хайх</label>
+            <div class="search__field">
+              <input id="searchInputCart" name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input />
+              <button class="search__voiceBtn" type="button" data-voice-search aria-label="Дуу хоолойгоор хайх">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <button class="search__btn" type="submit" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="topbar__right">
+          <a class="topbar__action" href="/profile.html?mode=login" aria-label="Профайл">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M20 21a8 8 0 1 0-16 0" stroke-linecap="round"/>
+              <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/>
+            </svg>
+            <span class="topbar__actionLabel">Профайл</span>
+          </a>
+          <a class="topbar__action topbar__action--active" href="/cart.html" aria-label="Сагс">
+            <div class="topbar__actionIconWrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/>
+              </svg>
+              <span class="cartBadge" data-cart-badge hidden>0</span>
+            </div>
+            <span class="topbar__actionLabel">Сагс</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ── 2-column cart layout ── -->
+    <main class="cartPage" id="main">
+
+      <!-- LEFT: product list -->
+      <section class="cartPage__left" aria-label="Сагсны бараанууд">
+        <div class="cartPage__listHead">
+          <h1 class="cartPage__title">Миний сагс</h1>
+          <span class="cartPage__count" data-cart-count></span>
+        </div>
+
+        <!-- Items injected here -->
+        <div data-cart-list></div>
+
+        <!-- Empty state -->
+        <div class="cartEmpty" data-cart-empty hidden>
+          <div class="cartEmpty__icon">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/>
+            </svg>
+          </div>
+          <p class="cartEmpty__title">Сагс хоосон байна</p>
+          <p class="cartEmpty__hint">Дэлгүүрлэж, дуртай барааны сагсандаа нэм!</p>
+          <a class="cartEmpty__btn" href="/">Дэлгүүрлэж эхлэх</a>
+        </div>
+      </section>
+
+      <!-- RIGHT: order summary -->
+      <aside class="cartPage__right" aria-label="Захиалгын мэдээлэл">
+        <div class="cartSummary">
+          <h2 class="cartSummary__title">Захиалгын мэдээлэл</h2>
+
+          <div class="cartSummary__rows">
+            <div class="cartSummary__row">
+              <span>Барааны дүн</span>
+              <span class="cartSummary__val" data-subtotal>$0.00</span>
+            </div>
+            <div class="cartSummary__row cartSummary__row--muted">
+              <span>Хүргэлт</span>
+              <span>Захиалга хийхэд тооцно</span>
+            </div>
+          </div>
+
+          <div class="cartSummary__divider"></div>
+
+          <div class="cartSummary__totalRow">
+            <span class="cartSummary__totalLabel">Нийт дүн</span>
+            <span class="cartSummary__totalVal" data-total>$0.00</span>
+          </div>
+
+          <a class="cartSummary__btn" href="/checkout.html" data-checkout-btn>
+            Захиалах
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <a class="cartSummary__continue" href="/">
+            ← Дэлгүүрлэлт үргэлжлүүлэх
+          </a>
+
+          <div class="cartSummary__trust">
+            <span>🔒 Аюулгүй төлбөр</span>
+            <span>↩ Буцаалт боломжтой</span>
+          </div>
+        </div>
+      </aside>
+
+    </main>
+
+    <nav class="bottomNav" aria-label="Bottom navigation">
+      <a class="bottomNav__item" href="/">Нүүр</a>
+      <a class="bottomNav__item is-active" href="/cart.html">Сагс</a>
+      <a class="bottomNav__item" href="/my-orders">Захиалга</a>
+      <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+    </nav>
+
+    <script type="module" src="/js/cart.js"></script>
+  </body>
+</html>

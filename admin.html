@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — HANMUN</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="adminBody">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────────── -->
+  <aside class="adminSide" id="adminSide">
+    <div class="adminSide__logo">
+      <span class="adminSide__logoMark">H</span>
+      <span>HANMUN <span class="adminSide__adminTag">Admin</span></span>
+    </div>
+
+    <nav class="adminNav" aria-label="Admin navigation">
+      <a class="adminNav__item is-active" href="#" data-nav="dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a class="adminNav__item" href="#" data-nav="products">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Бараа
+        <span class="adminNav__badge" data-products-count>—</span>
+      </a>
+      <a class="adminNav__item" href="#" data-nav="orders">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Захиалга
+        <span class="adminNav__badge adminNav__badge--warn" data-orders-count>—</span>
+      </a>
+      <a class="adminNav__item" href="#" data-nav="users">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Хэрэглэгчид
+      </a>
+    </nav>
+
+    <div class="adminSide__footer">
+      <div class="adminSide__user">
+        <div class="adminSide__userAvatar" data-admin-avatar>A</div>
+        <div class="adminSide__userInfo">
+          <div class="adminSide__userName" data-admin-name>Admin</div>
+          <div class="adminSide__userEmail" data-admin-email></div>
+        </div>
+      </div>
+      <div class="adminSide__actions">
+        <a class="adminSide__link" href="/" target="_blank">Сайт харах ↗</a>
+        <button class="adminSide__logout" type="button" data-logout>Гарах</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main ────────────────────────────────────────────────────────── -->
+  <div class="adminMain">
+
+    <!-- Top bar -->
+    <header class="adminTopbar">
+      <div class="adminTopbar__left">
+        <button class="adminTopbar__menuBtn" type="button" id="menuToggle" aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
+        <h1 class="adminTopbar__title" data-page-title>Dashboard</h1>
+      </div>
+      <div class="adminTopbar__right">
+        <button class="adminTopbar__addBtn" type="button" data-open-add-product hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+          Бараа нэмэх
+        </button>
+      </div>
+    </header>
+
+    <!-- Auth gate -->
+    <div class="adminGate" data-auth-gate>
+      <div class="adminGate__box">
+        <div class="adminGate__logo">🔒</div>
+        <h2 class="adminGate__title">Admin нэвтрэх</h2>
+        <p class="adminGate__hint">Зөвхөн admin и-мэйлтэй хэрэглэгч орох боломжтой</p>
+        <div class="adminGate__error" data-gate-error hidden></div>
+        <input class="adminGate__input" id="gateEmail" type="email" placeholder="И-мэйл хаяг" autocomplete="email" />
+        <input class="adminGate__input" id="gatePass"  type="password" placeholder="Нууц үг" autocomplete="current-password" />
+        <button class="adminGate__btn" type="button" data-gate-login>Нэвтрэх</button>
+      </div>
+    </div>
+
+    <!-- ── Dashboard ──────────────────────────────────────────────── -->
+    <section class="adminPage" data-admin-page="dashboard" hidden>
+      <div class="adminStats" data-stats-grid>
+        <div class="adminStat">
+          <div class="adminStat__icon adminStat__icon--blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          </div>
+          <div class="adminStat__body">
+            <div class="adminStat__val" data-stat-products>—</div>
+            <div class="adminStat__label">Нийт бараа</div>
+          </div>
+        </div>
+        <div class="adminStat">
+          <div class="adminStat__icon adminStat__icon--green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="adminStat__body">
+            <div class="adminStat__val" data-stat-orders>—</div>
+            <div class="adminStat__label">Нийт захиалга</div>
+          </div>
+        </div>
+        <div class="adminStat">
+          <div class="adminStat__icon adminStat__icon--orange">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="adminStat__body">
+            <div class="adminStat__val" data-stat-revenue>—</div>
+            <div class="adminStat__label">Нийт орлого</div>
+          </div>
+        </div>
+        <div class="adminStat">
+          <div class="adminStat__icon adminStat__icon--red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="adminStat__body">
+            <div class="adminStat__val" data-stat-lowstock>—</div>
+            <div class="adminStat__label">Нөөц бага</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent orders -->
+      <div class="adminCard" style="margin-top:24px">
+        <div class="adminCard__head">
+          <h2 class="adminCard__title">Сүүлийн захиалгууд</h2>
+          <a class="adminCard__link" href="#" data-nav="orders">Бүгдийг харах →</a>
+        </div>
+        <div data-recent-orders>
+          <div class="adminTableWrap"><table class="adminTable">
+            <thead><tr><th>Дугаар</th><th>Хэрэглэгч</th><th>Дүн</th><th>Байдал</th><th>Огноо</th></tr></thead>
+            <tbody data-recent-orders-body>
+              <tr><td colspan="5" class="adminTable__empty">Уншиж байна…</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Products ───────────────────────────────────────────────── -->
+    <section class="adminPage" data-admin-page="products" hidden>
+      <div class="adminCard__toolbar">
+        <input class="adminSearch" type="search" placeholder="Бараа хайх…" data-product-search />
+        <div class="adminCard__toolbarRight">
+          <select class="adminSelect" data-cat-filter>
+            <option value="">Бүх ангилал</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Beauty</option>
+            <option>Home</option>
+            <option>Sports</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="adminCard">
+        <div class="adminTableWrap">
+          <table class="adminTable">
+            <thead>
+              <tr>
+                <th style="width:56px">Зураг</th>
+                <th>Нэр</th>
+                <th>Ангилал</th>
+                <th>Үнэ</th>
+                <th>Нөөц</th>
+                <th style="width:110px">Үйлдэл</th>
+              </tr>
+            </thead>
+            <tbody data-products-tbody>
+              <tr><td colspan="6" class="adminTable__empty">Уншиж байна…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Orders ─────────────────────────────────────────────────── -->
+    <section class="adminPage" data-admin-page="orders" hidden>
+      <div class="adminCard__toolbar">
+        <input class="adminSearch" type="search" placeholder="Захиалга №, хэрэглэгч хайх…" data-order-search />
+        <div class="adminCard__toolbarRight">
+          <select class="adminSelect" data-order-status-filter>
+            <option value="">Бүх захиалга</option>
+            <option value="awaiting_payment">Төлбөр хүлээж байна</option>
+            <option value="processing">Боловсруулж байна</option>
+            <option value="out_for_delivery">Хүргэлтэнд гарсан</option>
+            <option value="delivered">Хүргэгдсэн</option>
+            <option value="cancelled">Цуцлагдсан</option>
+          </select>
+          <button class="adminTopbar__addBtn" type="button" data-refresh-orders style="font-size:.8rem;padding:6px 12px">
+            ↻ Шинэчлэх
+          </button>
+        </div>
+      </div>
+      <div class="adminCard">
+        <div class="adminTableWrap">
+          <table class="adminTable">
+            <thead>
+              <tr>
+                <th>Захиалга №</th>
+                <th>Хэрэглэгч</th>
+                <th>Нийт дүн</th>
+                <th>Одоогийн байдал</th>
+                <th style="min-width:200px">Хүргэлтийн яавц</th>
+                <th>Огноо</th>
+                <th style="width:80px">Дэлгэр.</th>
+              </tr>
+            </thead>
+            <tbody data-orders-tbody>
+              <tr><td colspan="7" class="adminTable__empty">Уншиж байна…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Users ──────────────────────────────────────────────────── -->
+    <section class="adminPage" data-admin-page="users" hidden>
+      <div class="adminCard__toolbar">
+        <input class="adminSearch" type="search" placeholder="Нэр, и-мэйл, утас хайх…" data-user-search />
+        <div class="adminCard__toolbarRight">
+          <select class="adminSelect" data-user-filter>
+            <option value="">Бүх хэрэглэгч</option>
+            <option value="active">Идэвхтэй</option>
+            <option value="banned">Хаагдсан</option>
+          </select>
+        </div>
+      </div>
+      <div class="adminCard">
+        <div class="adminTableWrap">
+          <table class="adminTable">
+            <thead>
+              <tr>
+                <th>Хэрэглэгч</th>
+                <th>Утас</th>
+                <th>Хаяг</th>
+                <th>Бүртгэсэн огноо</th>
+                <th>Байдал</th>
+                <th style="width:140px">Үйлдэл</th>
+              </tr>
+            </thead>
+            <tbody data-users-tbody>
+              <tr><td colspan="6" class="adminTable__empty">Уншиж байна…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── Product Modal ────────────────────────────────────────────── -->
+  <div class="adminModal" data-product-modal hidden aria-modal="true" role="dialog">
+    <div class="adminModal__backdrop" data-modal-close></div>
+    <div class="adminModal__box">
+      <div class="adminModal__head">
+        <h2 class="adminModal__title" data-modal-title>Бараа нэмэх</h2>
+        <button class="adminModal__close" type="button" data-modal-close aria-label="Хаах">✕</button>
+      </div>
+      <form class="adminModal__form" data-product-form>
+        <input type="hidden" data-product-id />
+        <div class="adminFormRow">
+          <div class="adminField">
+            <label class="adminField__label">Нэр *</label>
+            <input class="adminField__input" name="name" required placeholder="Барааны нэр" />
+          </div>
+          <div class="adminField">
+            <label class="adminField__label">Ангилал *</label>
+            <select class="adminField__input" name="category" required>
+              <option value="">Сонгох…</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Beauty</option>
+              <option>Home</option>
+              <option>Sports</option>
+            </select>
+          </div>
+        </div>
+        <div class="adminFormRow">
+          <div class="adminField">
+            <label class="adminField__label">Үнэ ($) *</label>
+            <input class="adminField__input" name="price" type="number" step="0.01" min="0" required placeholder="0.00" />
+          </div>
+          <div class="adminField">
+            <label class="adminField__label">Анхны үнэ ($)</label>
+            <input class="adminField__input" name="priceWas" type="number" step="0.01" min="0" placeholder="0.00" />
+          </div>
+          <div class="adminField">
+            <label class="adminField__label">Нөөц *</label>
+            <input class="adminField__input" name="stockQty" type="number" min="0" required placeholder="0" />
+          </div>
+        </div>
+        <div class="adminField">
+          <label class="adminField__label">Тайлбар</label>
+          <textarea class="adminField__input adminField__textarea" name="description" rows="3" placeholder="Барааны тайлбар…"></textarea>
+        </div>
+        <div class="adminField">
+          <label class="adminField__label">Зургийн URL</label>
+          <div style="display:grid;gap:6px">
+            <input class="adminField__input" name="imageUrl" type="url" placeholder="https://… эсвэл доороос upload хийнэ" data-img-url-input/>
+            <label class="adminImgUpload" data-img-upload-label>
+              <input type="file" accept="image/*" data-img-file style="display:none"/>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span data-img-upload-label-text>Зураг upload хийх</span>
+            </label>
+          </div>
+        </div>
+        <div class="adminField">
+          <label class="adminField__label">Tags (таслалаар)</label>
+          <input class="adminField__input" name="tags" placeholder="electronics, headset, audio" />
+        </div>
+        <div class="adminModal__error" data-form-error hidden></div>
+        <div class="adminModal__foot">
+          <button class="adminModal__cancelBtn" type="button" data-modal-close>Болих</button>
+          <button class="adminModal__saveBtn" type="submit" data-save-btn>Хадгалах</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Order detail modal ──────────────────────────────────────── -->
+  <div class="adminModal" data-order-modal hidden aria-modal="true" role="dialog">
+    <div class="adminModal__backdrop" data-order-modal-close></div>
+    <div class="adminModal__box">
+      <div class="adminModal__head">
+        <h2 class="adminModal__title" data-order-modal-title>Захиалга</h2>
+        <button class="adminModal__close" type="button" data-order-modal-close>✕</button>
+      </div>
+      <div data-order-modal-body style="padding:20px;display:grid;gap:12px"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

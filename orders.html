@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orders — HANMUN</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar" role="banner">
+      <nav class="topbar__inner" aria-label="Top navigation">
+        <div class="topbar__left">
+          <a class="icon-btn" href="./index.html" aria-label="Back to home">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 18 9 12l6-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a class="brand" href="./index.html" aria-label="HANMUN home">
+            <span class="brand__logo">HANMUN</span>
+          </a>
+        </div>
+        <div class="topbar__center">
+          <form class="search" role="search" aria-label="Site search" data-search-nav>
+            <label class="sr-only" for="searchInputOrders">Бараа хайх</label>
+            <div class="search__field">
+              <input id="searchInputOrders" name="q" type="search" placeholder="Бараа, брэнд хайх…" autocomplete="off" data-search-input />
+              <button class="search__voiceBtn" type="button" data-voice-search aria-label="Дуу хоолойгоор хайх">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <button class="search__btn" type="submit" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="topbar__right">
+          <a class="icon-btn" href="./cart.html" aria-label="Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="cartBadge" data-cart-badge hidden>0</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="panel">
+        <div class="panel__head">
+          <h1 class="panel__title">Захиалга хянах</h1>
+          <a class="link" href="./index.html">Хямдралтай барааны дэлгүүр</a>
+        </div>
+
+        <form class="form form--inline" data-track-form>
+          <div class="field">
+            <label class="field__label" for="order">Захиалгын дугаар</label>
+            <input class="field__input" id="order" name="order" placeholder="UB-..." />
+          </div>
+          <button class="btn btn--primary" type="submit">Хайх</button>
+        </form>
+
+        <div class="order" data-order hidden>
+          <div class="order__top">
+            <div>
+              <div class="order__num" data-order-number></div>
+              <div class="order__meta" data-order-meta></div>
+            </div>
+            <div class="order__status" data-order-status></div>
+          </div>
+
+          <div class="progress" data-progress aria-label="Order progress">
+            <div class="progress__step" data-step="paid">
+              <div class="progress__dot"></div>
+              <div class="progress__label">Paid</div>
+            </div>
+            <div class="progress__line"></div>
+            <div class="progress__step" data-step="processing">
+              <div class="progress__dot"></div>
+              <div class="progress__label">Processing</div>
+            </div>
+            <div class="progress__line"></div>
+            <div class="progress__step" data-step="out_for_delivery">
+              <div class="progress__dot"></div>
+              <div class="progress__label">Out for delivery</div>
+            </div>
+            <div class="progress__line"></div>
+            <div class="progress__step" data-step="delivered">
+              <div class="progress__dot"></div>
+              <div class="progress__label">Delivered</div>
+            </div>
+          </div>
+
+          <div class="order__grid">
+            <div class="orderCard">
+              <div class="orderCard__title">Totals</div>
+              <div class="orderCard__row"><span>Subtotal</span><span data-t-sub></span></div>
+              <div class="orderCard__row"><span>Delivery</span><span data-t-del></span></div>
+              <div class="orderCard__row orderCard__total"><span>Total</span><span data-t-total></span></div>
+            </div>
+            <div class="orderCard">
+              <div class="orderCard__title">Delivery</div>
+              <div class="orderCard__row"><span>Status</span><span data-ship-status></span></div>
+              <div class="orderCard__row"><span>ETA</span><span data-ship-eta></span></div>
+            </div>
+          </div>
+
+          <div class="orderItems" data-order-items></div>
+        </div>
+
+        <div class="form__hint" data-error hidden></div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/orders.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Firestore Seed — HANMUN</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; }
+    h1   { font-size: 1.4rem; }
+    pre  { background:#f5f5f5; padding:14px; overflow:auto; font-size:0.82rem; border-radius:6px; }
+    button { padding:12px 28px; font-size:1rem; font-weight:700; cursor:pointer; border:0;
+             background:#0074e9; color:#fff; margin-top:16px; }
+    button:disabled { opacity:0.6; cursor:not-allowed; }
+    .ok   { color:#1e8a3f; font-weight:700; }
+    .err  { color:#e8232a; font-weight:700; }
+    .note { background:#fff3cd; padding:12px; border-left:4px solid #ffc107; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+<h1>🌱 Firestore Seed — HANMUN бараа</h1>
+
+<div class="note">
+  <strong>Анхааруулга:</strong> Энэ хуудас firebase.js-д тохируулсан
+  project-рүү бараа бичнэ.<br>
+  Зөвхөн нэг л удаа ажиллуулна уу. Давхар бичвэл overwrite хийнэ.
+</div>
+
+<p>Нийт <strong id="total">16</strong> бараа бичих болно.</p>
+<pre id="log">Seed товч дарахад эхэлнэ…</pre>
+<button id="btn" onclick="seed()">🚀 Firestore-д бичих</button>
+
+<script type="module">
+import { initializeApp, getApps } from
+  "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc } from
+  "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ─── Firebase config (firebase.js-тэй ЯАГААД таарах ёстой) ──────────────
+const firebaseConfig = {
+  apiKey:            "AIzaSyCPiJtQZ0_dCN6ZQy61znv4X1QN1xPYcfs",
+  authDomain:        "hangman-79b6a.firebaseapp.com",
+  projectId:         "hangman-79b6a",
+  storageBucket:     "hangman-79b6a.firebasestorage.app",
+  messagingSenderId: "596119763707",
+  appId:             "1:596119763707:web:eaaa491058824580ffce5e",
+  measurementId:     "G-4DYQMKHY2H",
+};
+
+// ─── Product data (SQLite-тэй яг ижил) ───────────────────────────────────
+const PRODUCTS = [
+  { id:"p_earbuds",  name:"Noise-cancel earbuds",    price:59.99, priceWas:99.99,  category:"Electronics", stockQty:24, tags:["audio","earbuds","anc"],       description:"Compact ANC earbuds with crisp sound and comfortable fit." },
+  { id:"p_smarthome",name:"Smart home starter kit",  price:129.0, priceWas:179.0,  category:"Home",        stockQty:12, tags:["smart","home","kit"],          description:"A starter bundle for smart lighting and a hub." },
+  { id:"p_chair",    name:"Ergonomic desk chair",     price:189.99,priceWas:249.99, category:"Home",        stockQty:9,  tags:["office","chair","ergonomic"],  description:"Breathable mesh with adjustable support for long sessions." },
+  { id:"p_skincare", name:"Premium skincare set",     price:34.5,  priceWas:49.0,   category:"Beauty",      stockQty:30, tags:["beauty","skincare","set"],     description:"Daily essentials set—gift-ready packaging." },
+  { id:"p_keyboard", name:"Wireless keyboard",        price:39.99, priceWas:69.99,  category:"Electronics", stockQty:18, tags:["keyboard","wireless"],         description:"Quiet keys, solid battery life, and clean minimal design." },
+  { id:"p_airfryer", name:"Air fryer 5L",             price:74.0,  priceWas:119.0,  category:"Home",        stockQty:10, tags:["kitchen","airfryer"],          description:"Fast, crispy results with easy cleanup." },
+  { id:"p_shoes",    name:"Running shoes",            price:64.5,  priceWas:89.0,   category:"Sports",      stockQty:15, tags:["sports","shoes","running"],    description:"Breathable, lightweight trainers for daily runs." },
+  { id:"p_ssd",      name:"Portable SSD 1TB",         price:79.99, priceWas:109.99, category:"Electronics", stockQty:14, tags:["storage","ssd","usb-c"],       description:"Fast, compact storage—great for backups and travel." },
+  { id:"p_essentials",name:"Everyday essentials pack",price:22.99, priceWas:29.99,  category:"Home",        stockQty:50, tags:["essentials","home"],           description:"A handy essentials pack for home restocks." },
+  { id:"p_charger",  name:"Phone charger 65W",        price:18.5,  priceWas:26.0,   category:"Electronics", stockQty:40, tags:["charger","usb-c","fast"],      description:"Dual-port fast charger—compact and travel-friendly." },
+  { id:"p_hoodie",   name:"Comfort hoodie",           price:35.0,  priceWas:45.0,   category:"Fashion",     stockQty:28, tags:["fashion","hoodie"],            description:"Soft-touch hoodie with a clean, modern fit." },
+  { id:"p_grinder",  name:"Coffee grinder",           price:49.0,  priceWas:69.0,   category:"Home",        stockQty:11, tags:["coffee","kitchen"],            description:"Consistent grind sizes with a quieter motor." },
+  { id:"p_backpack", name:"Travel backpack 35L",      price:54.99, priceWas:79.99,  category:"Fashion",     stockQty:17, tags:["travel","bag","backpack"],     description:"Carry-on friendly with smart organization." },
+  { id:"p_dinnerware",name:"Ceramic dinnerware set",  price:68.0,  priceWas:89.0,   category:"Home",        stockQty:8,  tags:["home","ceramic","dinnerware"], description:"Modern ceramic set with secure packaging." },
+  { id:"p_watch",    name:"Analog watch",             price:109.0, priceWas:149.0,  category:"Fashion",     stockQty:13, tags:["watch","style"],              description:"Classic analog watch with two strap options." },
+  { id:"p_headset",  name:"Language learning headset",price:42.0,  priceWas:59.0,   category:"Electronics", stockQty:16, tags:["audio","headset"],             description:"Comfortable headset with noise reduction for focus." },
+];
+
+const log  = document.getElementById("log");
+const btn  = document.getElementById("btn");
+
+function append(msg, cls) {
+  const line = document.createElement("div");
+  if (cls) line.className = cls;
+  line.textContent = msg;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+
+window.seed = async function() {
+  btn.disabled = true;
+  log.innerHTML = "";
+  append("Firebase-д холбогдож байна…");
+
+  try {
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+    append(`✓ Project: ${firebaseConfig.projectId}`, "ok");
+    append("─".repeat(50));
+
+    let ok = 0, fail = 0;
+    for (const p of PRODUCTS) {
+      try {
+        await setDoc(doc(db, "products", p.id), {
+          name:        p.name,
+          description: p.description,
+          price:       p.price,
+          priceWas:    p.priceWas,
+          imageUrl:    "",          // Firestore-д зураг URL оруулах боломжтой
+          category:    p.category,
+          stockQty:    p.stockQty,
+          tags:        p.tags,
+          updatedAt:   new Date().toISOString(),
+        });
+        append(`✓ ${p.id} — ${p.name}`, "ok");
+        ok++;
+      } catch (e) {
+        append(`✗ ${p.id}: ${e.message}`, "err");
+        fail++;
+      }
+    }
+
+    append("─".repeat(50));
+    append(`Дууслаа: ${ok} амжилттай, ${fail} алдаатай`, ok === PRODUCTS.length ? "ok" : "err");
+    if (ok === PRODUCTS.length) {
+      append("🎉 Бүх бараа Firestore-д бичигдлээ! /category/Electronics руу очиж шалгана уу.", "ok");
+    }
+  } catch(e) {
+    append(`Firebase алдаа: ${e.message}`, "err");
+    append("firebase.js болон энэ файлын config таарч байгаа эсэхийг шалгана уу.", "err");
+  }
+
+  btn.disabled = false;
+};
+</script>
+</body>
+</html>

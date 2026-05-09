@@ -1,0 +1,29 @@
+// ── Firestore Security Rules — HANMUN ─────────────────────────────────────
+//
+// Firebase Console → Firestore → Rules дээр энэ rules-г paste хийнэ.
+//
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Products (бараа) ───────────────────────────────────────────────────
+    // Бүх хүн уншиж болно, зөвхөн admin бичиж болно
+    match /products/{productId} {
+      allow read:  if true;
+      allow write: if request.auth != null
+                   && request.auth.token.email == "blackzebra617@gmail.com";
+    }
+
+    // ── Users (хэрэглэгчийн профайл) ──────────────────────────────────────
+    // Зөвхөн эзэн нь унших/бичих боломжтой
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // ── Default: бусад бүгдийг хаах ───────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

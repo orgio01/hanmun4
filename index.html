@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="mn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HANMUN — Монголын онлайн дэлгүүр</title>
+    <meta name="description" content="HANMUN — Монголын хамгийн том онлайн дэлгүүр. Хурдан хүргэлт, хямд үнэ, найдвартай бараа."/>
+    <meta name="keywords" content="онлайн дэлгүүр, бараа, Монгол, HANMUN, хурдан хүргэлт"/>
+    <meta property="og:title" content="HANMUN — Монголын онлайн дэлгүүр"/>
+    <meta property="og:description" content="Хурдан хүргэлт, хямд үнэ, найдвартай бараа."/>
+    <meta property="og:type" content="website"/>
+    <meta name="theme-color" content="#e8232a"/>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar" role="banner">
+
+      <!-- Promo notification strip -->
+      <a class="promoStrip" href="#flash-sale" aria-label="Flash sale">
+        <span class="promoStrip__badge">PROMO</span>
+        <span class="promoStrip__text">Flash sale • extra 10% off with member coupon</span>
+        <span class="promoStrip__cta">See deals</span>
+      </a>
+
+      <!-- Utility bar: login · signup · orders · language -->
+      <div class="topbar__util">
+        <div class="topbar__utilInner">
+          <nav class="topbar__utilNav" aria-label="Utility links">
+            <!-- Нэвтрээгүй үед -->
+            <span data-auth-login-links>
+              <a href="./profile.html?mode=login" data-i18n="login">Нэвтрэх</a>
+              <span aria-hidden="true">|</span>
+              <a href="./profile.html?mode=signup" data-i18n="signup">Бүртгүүлэх</a>
+              <span aria-hidden="true">|</span>
+            </span>
+            <!-- Нэвтэрсэн үед (JS харуулна) -->
+            <span data-auth-user hidden style="display:inline-flex;align-items:center;gap:6px">
+              Сайн байна уу,&nbsp;<strong data-auth-name></strong>
+              <span aria-hidden="true">|</span>
+              <button class="topbar__utilBtn" type="button" data-logout>Гарах</button>
+              <span aria-hidden="true">|</span>
+            </span>
+            <a href="/my-orders">Захиалга</a>
+            <span aria-hidden="true">|</span>
+            <button class="topbar__utilBtn" type="button" data-lang-toggle aria-label="Toggle language">MN / EN</button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main nav: logo | search + chips | profile + cart -->
+      <nav class="topbar__inner" aria-label="Top navigation">
+        <div class="topbar__left">
+          <div class="cCat" aria-label="Categories">
+            <button
+              class="cCat__btn"
+              type="button"
+              aria-label="Category"
+              aria-controls="sidebar"
+              aria-expanded="false"
+              data-menu-trigger
+              data-cat-trigger
+            >
+              <span class="cCat__icon" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
+              <span class="cCat__label">Category</span>
+            </button>
+          </div>
+          <a class="brand" href="#" aria-label="HANMUN home">
+            <span class="brand__logo">HANMUN</span>
+          </a>
+        </div>
+
+        <div class="topbar__center">
+          <form class="search" role="search" aria-label="Site search">
+            <label class="sr-only" for="searchInput">Search products</label>
+            <div class="search__field">
+              <input
+                id="searchInput"
+                name="q"
+                type="search"
+                data-i18n-placeholder="searchPlaceholder"
+                placeholder="Бараа, брэнд хайх…"
+                autocomplete="off"
+              />
+              <button class="search__voiceBtn" type="button" data-voice-search aria-label="Дуу хоолойгоор хайх">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <button class="search__btn" type="submit" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="searchSuggest" data-search-suggest hidden></div>
+          </form>
+
+          <div class="chips" aria-label="Quick categories">
+            <a class="chip" href="#fast-delivery" data-i18n="fastDelivery">Хурдан хүргэлт</a>
+            <a class="chip" href="/my-orders">📦 Захиалгууд</a>
+            <a class="chip chip--accent" href="./profile.html?mode=signup" data-i18n="membership">Гишүүнчлэл</a>
+          </div>
+        </div>
+
+        <!-- Profile + Cart action buttons (icon + label below, Coupang style) -->
+        <div class="topbar__right">
+          <a class="topbar__action" href="./profile.html?mode=login" aria-label="Профайл">
+            <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 21a8 8 0 1 0-16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span class="topbar__actionLabel">Профайл</span>
+          </a>
+
+          <a class="topbar__action" href="./cart.html" aria-label="Сагс">
+            <div class="topbar__actionIconWrap">
+              <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="cartBadge" data-cart-badge hidden>0</span>
+            </div>
+            <span class="topbar__actionLabel">Сагс</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="backdrop" data-backdrop hidden></div>
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+      aria-label="Browse categories"
+      aria-hidden="true"
+      tabindex="-1"
+      data-sidebar
+    >
+      <div class="sidebar__content" role="menu">
+        <a class="sidebar__item" href="/category/Fashion"     role="menuitem">👗 Хувцас / Гутал / Аксессуар</a>
+        <a class="sidebar__item" href="/category/Beauty"      role="menuitem">💄 Гоо сайхан</a>
+        <a class="sidebar__item" href="/category/Baby"        role="menuitem">👶 Ээж, хүүхэд</a>
+        <a class="sidebar__item" href="/category/Food"        role="menuitem">🛒 Хүнс</a>
+        <a class="sidebar__item" href="/category/Home"        role="menuitem">🍳 Гал тогооны хэрэгсэл</a>
+        <a class="sidebar__item" href="/category/Home"        role="menuitem">🏠 Ахуйн хэрэглээ</a>
+        <a class="sidebar__item" href="/category/Home"        role="menuitem">🛋 Гэр ахуй / Интерьер</a>
+        <a class="sidebar__item" href="/category/Electronics" role="menuitem">⚡ Цахилгаан бараа</a>
+        <a class="sidebar__item" href="/category/Sports"      role="menuitem">⚽ Спорт / Чөлөөт цаг</a>
+        <a class="sidebar__item" href="/category/Auto"        role="menuitem">🚗 Авто хэрэгсэл</a>
+        <a class="sidebar__item" href="/category/Books"       role="menuitem">📚 Ном / Хөгжим / DVD</a>
+        <a class="sidebar__item" href="/category/Toys"        role="menuitem">🎮 Тоглоом / Хобби</a>
+        <a class="sidebar__item" href="/category/Office"      role="menuitem">📎 Бичиг хэрэг / Оффис</a>
+        <a class="sidebar__item" href="/category/Pets"        role="menuitem">🐾 Амьтны хэрэгсэл</a>
+        <a class="sidebar__item" href="/category/Health"      role="menuitem">💊 Эрүүл мэнд / Витамин</a>
+        <a class="sidebar__item" href="/category/Travel"      role="menuitem">✈️ Аялал / Тасалбар</a>
+      </div>
+    </aside>
+
+    <main id="main" class="page" role="main">
+      <section class="banner" aria-label="Promotions">
+        <div class="banner__track" data-banner-track>
+          <div class="banner__slide is-active">
+            <div class="banner__badge">PROMO</div>
+            <div class="banner__title">Up to 50% off picks</div>
+            <div class="banner__hint">Limited offers • today only</div>
+          </div>
+          <div class="banner__slide">
+            <div class="banner__badge">UB</div>
+            <div class="banner__title">Fast delivery in Ulaanbaatar</div>
+            <div class="banner__hint">Same/next day options</div>
+          </div>
+          <div class="banner__slide">
+            <div class="banner__badge">MEMBER</div>
+            <div class="banner__title">Member deals & rewards</div>
+            <div class="banner__hint">Save more on every order</div>
+          </div>
+        </div>
+        <div class="banner__dots" aria-label="Banner navigation" data-banner-dots></div>
+      </section>
+
+      <section class="section" id="flash-sale" aria-labelledby="flash-sale-title">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title" id="flash-sale-title">Flash sale</h2>
+            <p class="section__hint">Ends soon</p>
+          </div>
+          <div class="pill pill--warn"><span data-flash-countdown>--:--:--</span></div>
+        </div>
+        <div class="grid" data-section="limited"></div>
+      </section>
+
+      <section class="section" id="fast-delivery" aria-labelledby="fast-delivery-title">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title" id="fast-delivery-title">Fast delivery</h2>
+            <p class="section__hint">Arrives quickly in Ulaanbaatar</p>
+          </div>
+          <a class="link" href="#products" aria-label="See all products">See all</a>
+        </div>
+        <div class="grid" data-section="fast"></div>
+      </section>
+
+      <section class="section" id="products" aria-labelledby="products-title">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title" id="products-title">Products</h2>
+            <p class="section__hint">Discount badges included</p>
+          </div>
+          <a class="link" href="./cart.html" aria-label="Go to cart">Cart</a>
+        </div>
+        <div class="grid" data-products-grid></div>
+      </section>
+
+      <section class="hero" aria-label="Featured promotions">
+        <div class="hero__track" data-hero-track>
+          <article class="hero__slide is-active" style="--a:#6a7dff; --b:#2ee6a6">
+            <div class="hero__content">
+              <div class="hero__badge">FEATURED</div>
+              <h2 class="hero__title">New arrivals for summer</h2>
+              <p class="hero__hint">Fresh picks • limited-time bundles</p>
+              <div class="hero__actions">
+                <a class="btn btn--primary" href="#products">Shop now</a>
+                <a class="btn btn--ghost" href="#fast-delivery">Fast delivery</a>
+              </div>
+            </div>
+          </article>
+          <article class="hero__slide" style="--a:#ffbf4a; --b:#e8232a">
+            <div class="hero__content">
+              <div class="hero__badge">COUPON</div>
+              <h2 class="hero__title">Member coupons up to 15%</h2>
+              <p class="hero__hint">Stack savings on select categories</p>
+              <div class="hero__actions">
+                <a class="btn btn--primary" href="#flash-sale">Claim deals</a>
+                <a class="btn btn--ghost" href="./profile.html?mode=signup">Join</a>
+              </div>
+            </div>
+          </article>
+          <article class="hero__slide" style="--a:#2ee6a6; --b:#6a7dff">
+            <div class="hero__content">
+              <div class="hero__badge">EXPRESS</div>
+              <h2 class="hero__title">Delivered tomorrow in UB</h2>
+              <p class="hero__hint">Same/next day options • track in app</p>
+              <div class="hero__actions">
+                <a class="btn btn--primary" href="#fast-delivery">Browse express</a>
+                <a class="btn btn--ghost" href="/my-orders">Track orders</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="hero__dots" aria-label="Hero navigation" data-hero-dots></div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer__inner">
+          <div class="footer__brand">
+            <span class="brand__logo">HANMUN</span>
+            <span class="footer__muted">© 2026 HANMUN. Бүх эрх хамгаалагдсан.</span>
+          </div>
+          <div class="footer__links">
+            <a href="#" class="link">Terms</a>
+            <a href="#" class="link">Privacy</a>
+            <a href="#" class="link">Help</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <nav class="bottomNav" aria-label="Bottom navigation">
+      <a class="bottomNav__item is-active" href="/">Нүүр</a>
+      <a class="bottomNav__item" href="/wishlist">♡ Дуртай</a>
+      <a class="bottomNav__item" href="/cart.html">Сагс</a>
+      <a class="bottomNav__item" href="/my-orders">Захиалга</a>
+      <a class="bottomNav__item" href="/profile.html?mode=login">Профайл</a>
+    </nav>
+
+    <script type="module">
+      import { applyI18n, getLang, setLang } from "./js/i18n.js";
+      import { FIREBASE_READY } from "./js/firebase.js";
+
+      applyI18n(document);
+
+      // Lang toggle
+      const langBtn = document.querySelector("[data-lang-toggle]");
+      if (langBtn) {
+        langBtn.addEventListener("click", () => {
+          const next = getLang() === "mn" ? "en" : "mn";
+          setLang(next);
+          applyI18n(document);
+        });
+      }
+
+      // Auth state — show/hide login links vs user name
+      if (FIREBASE_READY) {
+        const { onAuth, logOut } = await import("./js/auth.js");
+        const loginLinks  = document.querySelector("[data-auth-login-links]");
+        const userDisplay = document.querySelector("[data-auth-user]");
+        const nameEl      = document.querySelector("[data-auth-name]");
+        const logoutBtn   = document.querySelector("[data-logout]");
+
+        onAuth((user, profile) => {
+          if (user) {
+            if (loginLinks)  loginLinks.hidden  = true;
+            if (userDisplay) userDisplay.hidden  = false;
+            if (nameEl) nameEl.textContent = profile?.name || user.displayName || user.email;
+          } else {
+            if (loginLinks)  loginLinks.hidden  = false;
+            if (userDisplay) userDisplay.hidden  = true;
+          }
+        });
+
+        logoutBtn?.addEventListener("click", async () => {
+          await logOut();
+          window.location.reload();
+        });
+      }
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>

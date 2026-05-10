@@ -191,4 +191,11 @@ app.get("/wishlist",       (req, res) => res.sendFile(path.join(PUBLIC_DIR, "wis
 app.use(express.static(PUBLIC_DIR));
 app.use("/api/", (req, res) => notFound(res));
 
-app.listen(PORT, () => console.log(`HANMUN server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`HANMUN server running on port ${PORT}`);
+  // Keep Render free tier awake — ping self every 14 min
+  const host = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+  setInterval(() => {
+    fetch(`${host}/`).catch(() => {});
+  }, 14 * 60 * 1000);
+});

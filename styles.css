@@ -6759,3 +6759,41 @@ body { overflow-x: hidden; }
   .quickNav__label { font-size: .7rem !important; }
 }
 
+
+/* QuickNav — minimal, compact */
+.quickNav {
+  background: #fff !important;
+  border-bottom: 1px solid rgba(16,16,16,.08) !important;
+  padding: 0 var(--px) !important;
+}
+.quickNav__item {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 8px 10px !important;
+  min-width: auto !important;
+  white-space: nowrap !important;
+  font-size: .72rem !important;
+  font-weight: 700 !important;
+  color: rgba(16,16,16,.65) !important;
+  border-right: 1px solid rgba(16,16,16,.06) !important;
+}
+.quickNav__item:last-child { border-right: 0 !important; }
+.quickNav__item:hover { color: var(--primary) !important; background: rgba(232,35,42,.03) !important; }
+.quickNav__item::after { display: none !important; }
+.quickNav__icon  { font-size: 1rem !important; line-height: 1 !important; }
+.quickNav__label { font-size: .70rem !important; font-weight: 700 !important; letter-spacing: 0 !important; }
+
+@media (max-width: 768px) {
+  .quickNav {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    grid-template-columns: unset !important;
+    padding: 0 10px !important;
+  }
+  .quickNav__item { padding: 8px 9px !important; }
+  .quickNav__icon  { font-size: .92rem !important; }
+  .quickNav__label { font-size: .66rem !important; }
+}
+

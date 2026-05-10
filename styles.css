@@ -5923,3 +5923,157 @@ body { overflow-x: hidden; }
 .section__titleLink .section__title {
   transition: color 130ms ease;
 }
+
+/* ══════════════════════════════════════════════════
+   Mobile — Coupang style (iPhone)
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Topbar: 2 мөрт grid ──
+     Мөр 1: [≡] [HANMUN] [👤🛒]
+     Мөр 2: [search бүтэн өргөн]
+  ── */
+  .topbar__inner {
+    display: grid !important;
+    grid-template-areas:
+      "cat brand icons"
+      "search search search" !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-rows: 52px auto !important;
+    padding: 8px 12px 10px !important;
+    gap: 6px 10px !important;
+    align-items: center !important;
+  }
+
+  .topbar__catCol {
+    grid-area: cat !important;
+    align-self: center !important;
+  }
+
+  /* Logo + Search контейнерийг задалж grid-д оруулна */
+  .topbar__center {
+    display: contents !important;
+  }
+  .topbar__center .brand {
+    grid-area: brand !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+  .topbar__center .brand__logo {
+    font-size: 1.1rem !important;
+  }
+  .topbar__center .brand__logo::after {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .topbar__center .search {
+    grid-area: search !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .topbar__center .searchSuggest {
+    top: calc(100% + 4px) !important;
+  }
+
+  .topbar__right {
+    grid-area: icons !important;
+    align-self: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+  }
+
+  /* Category button жижиг */
+  .cCat__btn {
+    width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 6px !important;
+    gap: 3px !important;
+  }
+  .cCat__label { display: none !important; }
+
+  /* Search талбар */
+  .search__field {
+    height: 42px !important;
+    padding-left: 12px !important;
+    border-width: 1.5px !important;
+  }
+  .search__btn { width: 42px !important; height: 42px !important; }
+  .search__voiceBtn { width: 30px !important; }
+
+  /* Icons жижиг */
+  .topbar__action { padding: 4px 8px !important; min-width: 38px !important; }
+  .topbar__action svg { width: 22px !important; height: 22px !important; }
+  .topbar__actionLabel { font-size: .62rem !important; }
+
+  /* ── QuickNav: icon дүрс том, текст тод ── */
+  .quickNav { padding: 0 12px !important; }
+  .quickNav__item {
+    padding: 10px 10px 8px !important;
+    min-width: 64px !important;
+    font-size: .7rem !important;
+    font-weight: 800 !important;
+  }
+  .quickNav__icon { font-size: 1.6rem !important; }
+
+  /* ── Нүүр хуудас ── */
+  .page { padding: 0 12px 90px !important; }
+
+  /* ── Product grid: 2 багана ── */
+  .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .card { grid-column: span 1 !important; }
+
+  /* Card тодорхой харагдах */
+  .card__imgWrap { aspect-ratio: 1 !important; }
+  .card__body { padding: 8px 10px 10px !important; gap: 6px !important; }
+  .card__title { font-size: .82rem !important; }
+  .price__now { font-size: .96rem !important; }
+  .mini-btn { font-size: .76rem !important; padding: 6px 8px !important; }
+
+  /* ── Banner ── */
+  .bannerFull { border-radius: 0 !important; }
+  .bannerFull .banner__slide {
+    min-height: 52vw !important;
+    padding: 20px 16px !important;
+  }
+  .bannerFull .banner__title { font-size: 1.4rem !important; }
+  .bannerFull .banner__hint { font-size: .86rem !important; }
+
+  /* ── Utility bar нуух ── */
+  .topbar__util { display: none !important; }
+  .promoStrip { display: none !important; }
+
+  /* ── Bottom nav тод ── */
+  .bottomNav {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    height: 60px !important;
+    box-shadow: 0 -1px 0 var(--border) !important;
+    background: #fff !important;
+  }
+  .bottomNav__item {
+    font-size: .68rem !important;
+    font-weight: 750 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ── Section ── */
+  .section { margin-top: 20px !important; }
+  .section__title { font-size: 1rem !important; }
+
+}
+
+/* ── Маш жижиг утас (390px) ── */
+@media (max-width: 390px) {
+  .topbar__inner { padding: 6px 10px 8px !important; }
+  .cCat__btn { width: 36px !important; height: 36px !important; }
+  .topbar__action { padding: 2px 6px !important; min-width: 34px !important; }
+  .topbar__action svg { width: 20px !important; height: 20px !important; }
+  .topbar__center .brand__logo { font-size: 1rem !important; }
+  .search__field { height: 40px !important; }
+  .search__btn { width: 40px !important; height: 40px !important; }
+}
+

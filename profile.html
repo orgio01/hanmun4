@@ -191,117 +191,118 @@
         </form>
 
         <!-- ══ Нэвтэрсэн хэрэглэгчийн хуудас ══ -->
-        <div data-has-profile hidden>
+        <div data-has-profile hidden class="myPage">
 
-          <!-- Хэрэглэгчийн мэдээлэл -->
-          <div class="myPage__user">
-            <div class="myPage__avatar" data-profile-initial>?</div>
-            <div class="myPage__userInfo">
-              <div class="myPage__name" data-profile-name>—</div>
-              <div class="myPage__email" data-profile-email>—</div>
+          <!-- Hero: avatar + name -->
+          <div class="myPage__hero">
+            <div class="myPage__heroAvatar" data-profile-initial>A</div>
+            <div class="myPage__heroInfo">
+              <div class="myPage__heroName" data-profile-name>—</div>
+              <div class="myPage__heroEmail" data-profile-email>—</div>
             </div>
           </div>
 
-          <!-- Хурдан цэс -->
-          <div class="myPage__quickMenu">
-            <a class="myPage__menuItem" href="/my-orders">
-              <span class="myPage__menuIcon">📦</span>
-              <span class="myPage__menuLabel">Захиалгууд</span>
-              <span class="myPage__menuArrow">›</span>
+          <!-- Захиалгын товч хуудас -->
+          <div class="myPage__orderNav">
+            <a class="myPage__orderNavItem" href="/my-orders">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>Захиалгууд</span>
             </a>
-            <a class="myPage__menuItem" href="/wishlist">
-              <span class="myPage__menuIcon">❤️</span>
-              <span class="myPage__menuLabel">Дуртай бараа</span>
-              <span class="myPage__menuArrow">›</span>
+            <a class="myPage__orderNavItem" href="/wishlist">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Дуртай</span>
             </a>
-            <a class="myPage__menuItem" href="/cart.html">
-              <span class="myPage__menuIcon">🛒</span>
-              <span class="myPage__menuLabel">Сагс</span>
-              <span class="myPage__menuArrow">›</span>
+            <a class="myPage__orderNavItem" href="/cart.html">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h15l-2 10H8L6 7Zm2 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 7 5 3H2"/></svg>
+              <span>Сагс</span>
+            </a>
+            <a class="myPage__orderNavItem" href="/my-orders">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Хянах</span>
             </a>
           </div>
 
           <!-- Сүүлд үзсэн бараа -->
-          <div class="myPage__section">
-            <div class="myPage__sectionHead">
-              <h2 class="myPage__sectionTitle">🕐 Сүүлд үзсэн</h2>
+          <div class="myPage__block">
+            <div class="myPage__blockHead">
+              <span class="myPage__blockTitle">Сүүлд үзсэн</span>
+              <a class="myPage__blockMore" href="/">Бүх бараа</a>
             </div>
-            <div class="myPage__recentGrid" data-recent-grid>
-              <p class="myPage__empty">Бараа үзээгүй байна</p>
+            <div class="myPage__recentScroll" data-recent-grid>
+              <p class="myPage__emptyText">Бараа үзээгүй байна</p>
             </div>
           </div>
 
-          <!-- Профайл тохиргоо -->
-          <div class="myPage__section">
-            <div class="myPage__sectionHead">
-              <h2 class="myPage__sectionTitle">⚙️ Профайл тохиргоо</h2>
-              <button class="myPage__editToggle" type="button" data-toggle-settings>Засах ✏️</button>
+          <!-- Миний мэдээлэл -->
+          <div class="myPage__block">
+            <div class="myPage__blockHead">
+              <span class="myPage__blockTitle">Миний мэдээлэл</span>
+              <button class="myPage__editBtn" type="button" data-toggle-settings>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Засах
+              </button>
             </div>
 
-            <!-- View mode -->
-            <div class="myPage__settings" data-settings-view>
-              <div class="myPage__settingRow">
-                <span class="myPage__settingLabel">Нэр</span>
-                <span class="myPage__settingVal" data-settings-name>—</span>
+            <!-- View -->
+            <div data-settings-view>
+              <div class="myPage__infoRow">
+                <span class="myPage__infoLabel">Нэр</span>
+                <span class="myPage__infoVal" data-settings-name>—</span>
               </div>
-              <div class="myPage__settingRow">
-                <span class="myPage__settingLabel">Утас</span>
-                <span class="myPage__settingVal" data-settings-phone>—</span>
+              <div class="myPage__infoRow">
+                <span class="myPage__infoLabel">Утас</span>
+                <span class="myPage__infoVal" data-settings-phone>—</span>
               </div>
-              <div class="myPage__settingRow">
-                <span class="myPage__settingLabel">И-мэйл</span>
-                <span class="myPage__settingVal" data-settings-email>—</span>
+              <div class="myPage__infoRow">
+                <span class="myPage__infoLabel">И-мэйл</span>
+                <span class="myPage__infoVal" data-settings-email>—</span>
               </div>
-              <div class="myPage__settingRow">
-                <span class="myPage__settingLabel">Дүүрэг</span>
-                <span class="myPage__settingVal" data-settings-district>Нэмэгдээгүй</span>
+              <div class="myPage__infoRow">
+                <span class="myPage__infoLabel">Дүүрэг</span>
+                <span class="myPage__infoVal" data-settings-district>—</span>
               </div>
-              <div class="myPage__settingRow">
-                <span class="myPage__settingLabel">Хаяг</span>
-                <span class="myPage__settingVal" data-settings-addr>Нэмэгдээгүй</span>
+              <div class="myPage__infoRow" style="border-bottom:0">
+                <span class="myPage__infoLabel">Хаяг</span>
+                <span class="myPage__infoVal" data-settings-addr>—</span>
               </div>
             </div>
 
-            <!-- Edit mode -->
-            <form class="myPage__editForm" data-settings-edit hidden>
-              <div class="myPage__editField">
+            <!-- Edit -->
+            <form data-settings-edit hidden style="padding-top:12px">
+              <div class="myPage__field">
                 <label>Нэр</label>
                 <input id="setPName" type="text" placeholder="Бүтэн нэр" autocomplete="name"/>
               </div>
-              <div class="myPage__editField">
+              <div class="myPage__field">
                 <label>Утас</label>
                 <input id="setPPhone" type="tel" inputmode="numeric" placeholder="8 оронтой"/>
               </div>
-              <div class="myPage__editField">
+              <div class="myPage__field">
                 <label>Дүүрэг</label>
                 <select id="setPDistrict">
                   <option value="">Сонгох…</option>
-                  <option>Sukhbaatar</option>
-                  <option>Chingeltei</option>
-                  <option>Bayangol</option>
-                  <option>Khan-Uul</option>
-                  <option>Bayanzurkh</option>
-                  <option>Songinokhairkhan</option>
+                  <option>Sukhbaatar</option><option>Chingeltei</option>
+                  <option>Bayangol</option><option>Khan-Uul</option>
+                  <option>Bayanzurkh</option><option>Songinokhairkhan</option>
                 </select>
               </div>
-              <div class="myPage__editField">
-                <label>Хаяг</label>
+              <div class="myPage__field">
+                <label>Дэлгэрэнгүй хаяг</label>
                 <input id="setPAddr" type="text" placeholder="Гудамж, байр, тоот" autocomplete="street-address"/>
               </div>
-              <div class="myPage__editError" data-settings-error hidden></div>
-              <div class="myPage__editActions">
-                <button type="button" class="myPage__cancelBtn" data-cancel-settings>Болих</button>
-                <button type="submit" class="myPage__saveBtn">Хадгалах</button>
+              <div class="myPage__fieldError" data-settings-error hidden></div>
+              <div style="display:flex;gap:8px;margin-top:14px">
+                <button type="button" class="myPage__btnSecondary" data-cancel-settings>Болих</button>
+                <button type="submit" class="myPage__btnPrimary">Хадгалах</button>
               </div>
             </form>
           </div>
 
           <!-- Гарах -->
-          <div class="myPage__section">
-            <button class="myPage__logoutBtn" type="button" data-clear>
-              🚪 Гарах
-            </button>
-          </div>
+          <button class="myPage__logoutRow" type="button" data-clear>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Гарах
+          </button>
 
         </div>
 

@@ -6524,3 +6524,184 @@ body { overflow-x: hidden; }
   .myPage__recentGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .myPage__recentName { font-size: .68rem; }
 }
+
+/* ══════════════════════════════════════════════════
+   My Page — Premium redesign
+   ══════════════════════════════════════════════════ */
+.myPage { padding: 0; }
+
+/* ── Hero ── */
+.myPage__hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0 20px;
+  border-bottom: 6px solid #f5f5f5;
+}
+.myPage__heroAvatar {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1f6fe8, #0b56d5);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(31,111,232,.30);
+}
+.myPage__heroName  { font-size: 1.1rem; font-weight: 900; color: rgba(16,16,16,.90); letter-spacing: -.01em; }
+.myPage__heroEmail { font-size: .82rem; color: rgba(16,16,16,.45); font-weight: 600; margin-top: 4px; }
+
+/* ── Order nav (4 icons) ── */
+.myPage__orderNav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 6px solid #f5f5f5;
+  background: #fff;
+}
+.myPage__orderNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 8px 16px;
+  text-decoration: none;
+  color: rgba(16,16,16,.72);
+  font-size: .78rem;
+  font-weight: 750;
+  border-right: 1px solid rgba(16,16,16,.06);
+  transition: background 130ms ease, color 130ms ease;
+}
+.myPage__orderNavItem:last-child { border-right: 0; }
+.myPage__orderNavItem:hover { background: rgba(16,16,16,.02); color: var(--c-blue); }
+.myPage__orderNavItem svg { color: rgba(16,16,16,.55); transition: color 130ms ease; }
+.myPage__orderNavItem:hover svg { color: var(--c-blue); }
+
+/* ── Block (section) ── */
+.myPage__block {
+  background: #fff;
+  margin-top: 8px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(16,16,16,.06);
+  border-bottom: 1px solid rgba(16,16,16,.06);
+}
+.myPage__blockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(16,16,16,.06);
+}
+.myPage__blockTitle {
+  font-size: .95rem;
+  font-weight: 900;
+  color: rgba(16,16,16,.85);
+  letter-spacing: -.01em;
+}
+.myPage__blockMore {
+  font-size: .78rem;
+  font-weight: 700;
+  color: rgba(16,16,16,.42);
+  text-decoration: none;
+  transition: color 130ms ease;
+}
+.myPage__blockMore:hover { color: var(--c-blue); }
+
+/* ── Recently viewed ── */
+.myPage__recentScroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 12px 0 4px;
+}
+.myPage__recentScroll::-webkit-scrollbar { display: none; }
+.myPage__recentScroll .myPage__recentItem {
+  flex-shrink: 0;
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+.myPage__recentScroll .myPage__recentItem img {
+  width: 88px; height: 88px;
+  object-fit: cover;
+  border: 1px solid rgba(16,16,16,.08);
+  border-radius: 4px;
+  display: block;
+}
+.myPage__recentScroll .myPage__recentName {
+  font-size: .72rem; font-weight: 700;
+  color: rgba(16,16,16,.72);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.myPage__recentScroll .myPage__recentPrice {
+  font-size: .76rem; font-weight: 900; color: rgba(16,16,16,.80);
+}
+.myPage__emptyText {
+  font-size: .84rem; color: rgba(16,16,16,.38);
+  font-weight: 650; margin: 8px 0; padding: 8px 0;
+}
+
+/* Edit button */
+.myPage__editBtn {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: 1px solid rgba(16,16,16,.16); background: transparent;
+  padding: 5px 12px; font: inherit; font-size: .78rem; font-weight: 750;
+  cursor: pointer; color: rgba(16,16,16,.58); border-radius: 4px;
+  transition: background 130ms ease;
+}
+.myPage__editBtn:hover { background: rgba(0,0,0,.04); }
+
+/* Info rows */
+.myPage__infoRow {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid rgba(16,16,16,.05);
+  font-size: .88rem;
+}
+.myPage__infoLabel { min-width: 68px; font-weight: 750; color: rgba(16,16,16,.42); flex-shrink: 0; }
+.myPage__infoVal   { font-weight: 650; color: rgba(16,16,16,.78); }
+
+/* Edit form */
+.myPage__field { display: grid; gap: 5px; margin-bottom: 10px; }
+.myPage__field label { font-size: .78rem; font-weight: 750; color: rgba(16,16,16,.48); }
+.myPage__field input,
+.myPage__field select {
+  height: 44px; border: 1px solid rgba(16,16,16,.18);
+  padding: 0 12px; font: inherit; font-size: .9rem; outline: none;
+  border-radius: 4px; transition: border-color 140ms ease; background: #fff;
+}
+.myPage__field input:focus,
+.myPage__field select:focus { border-color: var(--c-blue); box-shadow: 0 0 0 3px rgba(0,116,233,.08); }
+.myPage__fieldError {
+  padding: 8px 12px; background: rgba(232,35,42,.06);
+  border: 1px solid rgba(232,35,42,.18); color: #dc2626;
+  font-size: .82rem; font-weight: 650; border-radius: 4px;
+}
+.myPage__btnPrimary {
+  flex: 1; height: 44px; background: var(--c-blue); color: #fff;
+  border: 0; font: inherit; font-weight: 800; font-size: .9rem;
+  cursor: pointer; border-radius: 4px; transition: filter 130ms ease;
+}
+.myPage__btnPrimary:hover { filter: brightness(1.08); }
+.myPage__btnSecondary {
+  height: 44px; padding: 0 18px; border: 1px solid rgba(16,16,16,.18);
+  background: transparent; font: inherit; font-weight: 750; font-size: .88rem;
+  cursor: pointer; border-radius: 4px; color: rgba(16,16,16,.60);
+}
+
+/* Logout row */
+.myPage__logoutRow {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 16px 0; margin-top: 8px;
+  border: 0; background: transparent; font: inherit;
+  font-size: .9rem; font-weight: 750; color: rgba(16,16,16,.55);
+  cursor: pointer; border-top: 1px solid rgba(16,16,16,.06);
+  transition: color 130ms ease;
+}
+.myPage__logoutRow:hover { color: var(--primary); }
+

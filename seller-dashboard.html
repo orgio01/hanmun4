@@ -153,25 +153,24 @@
               <label>Барааны нэр *</label>
               <input name="name" type="text" placeholder="Барааны нэр" required/>
             </div>
-            <div class="sellerForm__field">
-              <label>Ангилал *</label>
-              <select name="category" required>
-                <option value="">Сонгох…</option>
-                <option>Electronics</option>
-                <option>Fashion</option>
-                <option>Beauty</option>
-                <option>Home</option>
-                <option>Sports</option>
-                <option>Baby</option>
-                <option>Food</option>
-                <option>Auto</option>
-                <option>Books</option>
-                <option>Toys</option>
-                <option>Office</option>
-                <option>Pets</option>
-                <option>Health</option>
-                <option>Travel</option>
-              </select>
+            <div class="sellerForm__field sellerForm__field--full">
+              <label>Ангилал * <span style="font-weight:500;color:#94a3b8">(хэд ч сонгож болно)</span></label>
+              <div class="catPicker" data-cat-picker>
+                <label class="catPick"><input type="checkbox" name="categories" value="Fashion"/>👗 Хувцас</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Beauty"/>💄 Гоо сайхан</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Baby"/>👶 Ээж, хүүхэд</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Food"/>🛒 Хүнс</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Home"/>🏠 Гэр ахуй</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Electronics"/>⚡ Цахилгаан</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Sports"/>⚽ Спорт</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Auto"/>🚗 Авто</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Books"/>📚 Ном / DVD</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Toys"/>🎮 Тоглоом</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Office"/>📎 Оффис</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Pets"/>🐾 Амьтан</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Health"/>💊 Эрүүл мэнд</label>
+                <label class="catPick"><input type="checkbox" name="categories" value="Travel"/>✈️ Аялал</label>
+              </div>
             </div>
             <div class="sellerForm__field">
               <label>Хүргэлтийн төрөл</label>

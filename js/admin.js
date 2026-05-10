@@ -244,7 +244,9 @@ function openProductModal(product=null) {
   if (product) {
     const sv=(n,v)=>{const el=form.querySelector(`[name=${n}]`);if(el)el.value=v;};
     sv("deliveryType",product.deliveryType||"");
-    sv("name",product.name||""); sv("category",product.category||"");
+    sv("name",product.name||"");
+    const cats = product.categories?.length ? product.categories : (product.category ? [product.category] : []);
+    form.querySelectorAll("[name=categories]").forEach(cb => { cb.checked = cats.includes(cb.value); });
     sv("price",product.price||""); sv("priceWas",product.priceWas||"");
     sv("stockQty",product.stockQty||0); sv("description",product.description||"");
     sv("imageUrl",product.imageUrl||""); sv("tags",(product.tags||[]).join(", "));
@@ -277,9 +279,12 @@ qs("[data-product-form]")?.addEventListener("submit", async (e) => {
   e.preventDefault();
   const form=e.target, saveBtn=qs("[data-save-btn]"), err=qs("[data-form-error]"), id=qs("[data-product-id]")?.value;
   err.hidden=true; saveBtn.disabled=true; saveBtn.textContent="Хадгалж байна…";
+  const categories=[...form.querySelectorAll("[name=categories]:checked")].map(c=>c.value);
+  if(!categories.length){err.textContent="Дор хаяж нэг ангилал сонгоно уу.";err.hidden=false;saveBtn.disabled=false;saveBtn.textContent="Хадгалах";return;}
   const data={
     deliveryType:form.querySelector("[name=deliveryType]")?.value||"",
-    name:form.querySelector("[name=name]").value.trim(), category:form.querySelector("[name=category]").value,
+    name:form.querySelector("[name=name]").value.trim(),
+    category:categories[0], categories,
     price:Number(form.querySelector("[name=price]").value), priceWas:Number(form.querySelector("[name=priceWas]").value)||null,
     stockQty:Number(form.querySelector("[name=stockQty]").value), description:form.querySelector("[name=description]").value.trim(),
     imageUrl:form.querySelector("[name=imageUrl]").value.trim(),

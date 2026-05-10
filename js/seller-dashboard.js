@@ -185,9 +185,12 @@ addForm?.addEventListener("submit", async (e) => {
     const tags = f.querySelector("[name=tags]").value
       .split(",").map(t => t.trim()).filter(Boolean);
 
+    const categories = [...f.querySelectorAll("[name=categories]:checked")].map(c => c.value);
+
     const data = {
       name:         f.querySelector("[name=name]").value.trim(),
-      category:     f.querySelector("[name=category]").value,
+      category:     categories[0] || "",
+      categories,
       price:        Number(f.querySelector("[name=price]").value) || 0,
       priceWas:     Number(f.querySelector("[name=priceWas]").value) || 0,
       stockQty:     Number(f.querySelector("[name=stockQty]").value) || 0,
@@ -197,8 +200,8 @@ addForm?.addEventListener("submit", async (e) => {
       tags,
     };
 
-    if (!data.name)        throw new Error("Барааны нэрийг оруулна уу.");
-    if (!data.category)    throw new Error("Ангиллыг сонгоно уу.");
+    if (!data.name)            throw new Error("Барааны нэрийг оруулна уу.");
+    if (!categories.length)    throw new Error("Дор хаяж нэг ангилал сонгоно уу.");
     if (!data.price)       throw new Error("Үнийг оруулна уу.");
     if (!data.description) throw new Error("Тайлбар оруулна уу.");
 

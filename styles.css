@@ -6077,3 +6077,210 @@ body { overflow-x: hidden; }
   .search__btn { width: 40px !important; height: 40px !important; }
 }
 
+
+/* ══════════════════════════════════════════════════
+   COUPANG MOBILE — 100% match
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── 1. Util bar + promo нуух ── */
+  .topbar__util,
+  .promoStrip { display: none !important; }
+
+  /* ── 2. Header: 2 мөр
+     Мөр 1: [≡] [HANMUN] [👤🛒]
+     Мөр 2: [search бүтэн]
+  ── */
+  .topbar__inner {
+    display: grid !important;
+    grid-template-areas:
+      "cat brand icons"
+      "srch srch srch" !important;
+    grid-template-columns: 52px 1fr auto !important;
+    grid-template-rows: 52px auto !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    align-items: stretch !important;
+  }
+
+  .topbar__catCol {
+    grid-area: cat !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(180deg, #1f6fe8, #0b56d5) !important;
+  }
+  .cCat__btn {
+    width: 52px !important; height: 52px !important;
+    min-height: 52px !important;
+    background: transparent !important;
+    padding: 12px !important;
+    gap: 4px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .cCat__label { display: none !important; }
+  .cCat__icon { width: 20px !important; height: 14px !important; gap: 3px !important; }
+
+  /* Logo голд */
+  .topbar__center {
+    display: contents !important;
+  }
+  .topbar__center .brand {
+    grid-area: brand !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .topbar__center .brand__logo {
+    font-size: 1.25rem !important;
+    font-weight: 950 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  /* Search бүтэн мөр */
+  .topbar__center .search {
+    grid-area: srch !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    display: block !important;
+  }
+  .search__field {
+    height: 44px !important;
+    border: 2px solid rgba(16,16,16,.20) !important;
+    padding-left: 14px !important;
+    border-radius: 0 !important;
+    gap: 6px !important;
+  }
+  .search__field:focus-within {
+    border-color: var(--c-blue) !important;
+  }
+  .search__btn {
+    width: 44px !important; height: 44px !important;
+    background: #1f6fe8 !important;
+  }
+  .search__voiceBtn { width: 32px !important; }
+
+  /* Icons баруун */
+  .topbar__right {
+    grid-area: icons !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 2px !important;
+    padding: 0 10px 0 6px !important;
+  }
+  .topbar__action {
+    padding: 4px 6px !important;
+    gap: 3px !important;
+    min-width: auto !important;
+  }
+  .topbar__action svg { width: 22px !important; height: 22px !important; }
+  .topbar__actionLabel { font-size: .64rem !important; }
+
+  /* ── 3. QuickNav: 2×5 GRID (Coupang шиг) ── */
+  .quickNav {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    padding: 10px 12px 6px !important;
+    gap: 6px 4px !important;
+    border-bottom: 1px solid var(--border) !important;
+    background: #fff !important;
+    justify-items: center !important;
+  }
+  .quickNav::before,
+  .quickNav::after { display: none !important; }
+  .quickNav__item {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 6px 4px !important;
+    min-width: auto !important;
+    width: 100% !important;
+    font-size: .68rem !important;
+    font-weight: 750 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    border-right: 0 !important;
+  }
+  .quickNav__item::after { display: none !important; }
+  .quickNav__icon { font-size: 1.7rem !important; line-height: 1 !important; }
+  .quickNav__label { font-size: .66rem !important; }
+
+  /* ── 4. Banner ── */
+  .bannerFull {
+    height: auto !important;
+  }
+  .bannerFull .banner__slide {
+    min-height: 52vw !important;
+    padding: 20px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .bannerFull .banner__title { font-size: 1.4rem !important; margin-top: 10px !important; }
+  .bannerFull .banner__hint  { font-size: .86rem !important; margin-top: 8px !important; }
+  .bannerFull .banner__dots  { padding: 10px 14px !important; }
+
+  /* ── 5. Page & products ── */
+  .page { padding: 12px 10px 90px !important; }
+  .grid  { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .card  { grid-column: span 1 !important; }
+  .card__imgWrap { aspect-ratio: 1 !important; }
+  .card__body  { padding: 8px 10px 10px !important; gap: 5px !important; }
+  .card__title { font-size: .82rem !important; line-height: 1.3 !important; }
+  .price__now  { font-size: .94rem !important; }
+  .mini-btn    { font-size: .74rem !important; padding: 6px 8px !important; }
+
+  /* ── 6. Section ── */
+  .section { margin-top: 18px !important; }
+  .section__title { font-size: 1rem !important; }
+  .section__header { margin-bottom: 10px !important; }
+
+  /* ── 7. Bottom nav ── */
+  .bottomNav {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    height: 56px !important;
+    background: #fff !important;
+    border-top: 1px solid var(--border) !important;
+    box-shadow: 0 -2px 8px rgba(0,0,0,.07) !important;
+  }
+  .bottomNav__item {
+    font-size: .66rem !important;
+    font-weight: 750 !important;
+    color: rgba(16,16,16,.65) !important;
+  }
+  .bottomNav__item.is-active { color: var(--primary) !important; }
+
+  /* ── 8. Cart, checkout, other pages ── */
+  .cartPage  { padding: 12px 10px 90px !important; }
+  .coPage    { padding: 12px 10px 90px !important; }
+  .catPage   { padding: 12px 10px 90px !important; }
+  .moContent { padding: 12px 10px 0 !important; }
+
+  /* ── Safe area (iPhone notch) ── */
+  .bottomNav {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    height: calc(56px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* ── 390px (iPhone standard) ── */
+@media (max-width: 390px) {
+  .topbar__inner {
+    grid-template-columns: 46px 1fr auto !important;
+  }
+  .cCat__btn { width: 46px !important; height: 52px !important; }
+  .topbar__right { padding: 0 8px 0 4px !important; }
+  .topbar__action svg { width: 20px !important; height: 20px !important; }
+  .quickNav { gap: 4px 2px !important; padding: 8px 8px 4px !important; }
+  .quickNav__icon { font-size: 1.5rem !important; }
+  .quickNav__label { font-size: .62rem !important; }
+}
+

@@ -35,6 +35,13 @@
               <a href="./profile.html?mode=signup" data-i18n="signup">Бүртгүүлэх</a>
               <span aria-hidden="true">|</span>
             </span>
+            <!-- Нэвтэрсэн үед: avatar дугуй -->
+            <span data-auth-user hidden>
+              <a class="utilAvatar" href="/profile.html" aria-label="Профайл">
+                <span data-auth-initial>A</span>
+              </a>
+              <span aria-hidden="true">|</span>
+            </span>
             <a href="/my-orders">Захиалга</a>
             <span aria-hidden="true">|</span>
             <a href="/seller">Seller</a>
@@ -270,16 +277,22 @@
         });
       }
 
-      // Auth state — show/hide login links vs user name
+      // Auth state — show/hide login links vs avatar
       if (FIREBASE_READY) {
         const { onAuth } = await import("./js/auth.js");
-        const loginLinks = document.querySelector("[data-auth-login-links]");
+        const loginLinks  = document.querySelector("[data-auth-login-links]");
+        const userDisplay = document.querySelector("[data-auth-user]");
+        const initialEl   = document.querySelector("[data-auth-initial]");
 
-        onAuth((user) => {
+        onAuth((user, profile) => {
           if (user) {
-            if (loginLinks) loginLinks.hidden = true;
+            if (loginLinks)  loginLinks.hidden  = true;
+            if (userDisplay) userDisplay.hidden = false;
+            const name = profile?.name || user.displayName || user.email || "A";
+            if (initialEl) initialEl.textContent = name[0].toUpperCase();
           } else {
-            if (loginLinks) loginLinks.hidden = false;
+            if (loginLinks)  loginLinks.hidden  = false;
+            if (userDisplay) userDisplay.hidden = true;
           }
         });
       }

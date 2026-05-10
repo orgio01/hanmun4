@@ -124,6 +124,22 @@ input {
   color: rgba(16, 16, 16, 0.22);
   font-size: 0.68rem;
 }
+.utilAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0f172a;
+  color: #fff !important;
+  font-size: .68rem;
+  font-weight: 900;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity .13s;
+}
+.utilAvatar:hover { opacity: .75 !important; }
 .topbar__utilBtn {
   border: 0;
   background: transparent;

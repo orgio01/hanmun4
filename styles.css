@@ -6284,3 +6284,39 @@ body { overflow-x: hidden; }
   .quickNav__label { font-size: .62rem !important; }
 }
 
+
+/* ── Bottom nav 4 багана ── */
+.bottomNav { grid-template-columns: repeat(4, 1fr) !important; }
+
+/* ── Banner зургийн өндөр тогтмол — portrait зураг хэтрэхгүй ── */
+.bannerFull .banner__slide {
+  position: relative !important;
+  height: 55vw !important;
+  min-height: unset !important;
+  max-height: 460px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+.bannerFull .banner__slide img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  z-index: 0 !important;
+}
+.bannerFull .banner__slide > div {
+  position: relative !important;
+  z-index: 1 !important;
+}
+@media (max-width: 768px) {
+  .bannerFull .banner__slide {
+    height: 52vw !important;
+    max-height: 260px !important;
+    padding: 16px !important;
+  }
+}
